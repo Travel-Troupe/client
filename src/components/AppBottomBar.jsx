@@ -6,7 +6,7 @@ import iconTeam from '../assets/icons/team.png'
 import iconParams from '../assets/icons/settings.png'
 
 const StyledContainer = styled.div`
-  position: fixed;
+  height: 67px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -24,6 +24,7 @@ const StyledLink = styled(Link)`
   color: var(--color-black);
   font-size: 14px;
   text-decoration: none;
+  text-align: center;
 
   img {
     width: 22px;

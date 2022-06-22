@@ -17,8 +17,6 @@ function App() {
     })()
   }, [])
 
-
-
   const isLogged = !!(state.user)
 
   // if (isLogged && !hasTravels) {

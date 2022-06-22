@@ -12,7 +12,6 @@ const useFetch = (url, options = {}, deps = [], immediate = true) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  
   const fetchData = useCallback(async () => {
     try {
       const token = (await getItem('token')) || '' 
@@ -22,6 +21,7 @@ const useFetch = (url, options = {}, deps = [], immediate = true) => {
         method: 'GET',
         headers: new Headers(token ? {
           'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         } : {}),
         ...options
       });

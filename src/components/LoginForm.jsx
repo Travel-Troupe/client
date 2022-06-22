@@ -5,7 +5,6 @@ import * as User from '../services/User'
 import Button from './Button'
 import Input from './Input'
 import Label from './label'
-import Image from './Image'
 import Logo from './Logo'
 import styled from 'styled-components'
 import cover from '../assets/cover-login.jpg'
@@ -17,6 +16,8 @@ const Form = styled.form`
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  background: no-repeat url(${cover}) center center;
+  background-size: cover;
 `
 
 const StyledDiv = styled.div`
@@ -45,7 +46,6 @@ const LoginForm = () => {
 
   return (
     <Form onSubmit={logIn}>
-      <Image src={cover} />
       <Logo src={logo} />
       <StyledDiv className="">
         <Label>Nom d'utilisateur</Label>
