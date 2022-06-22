@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import iconHome from '../assets/icons/globe.png'
+import iconTeam from '../assets/icons/team.png'
+import iconParams from '../assets/icons/settings.png'
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -9,35 +12,50 @@ const StyledContainer = styled.div`
   right: 0;
   display: flex;
   justify-content: space-between;
+  padding: 0 30px 10px;
+  background-color: var(--color-white);
 `
 
 const StyledLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 8px 16px;
+  color: var(--color-black);
+  font-size: 14px;
+  text-decoration: none;
+
+  img {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 5px;
+  }
 `
 
 const items = [
   {
     path: '/',
     name: 'Mes voyages',
-    icon: 'je sais pas gros'
+    icon: iconHome
   },
   {
     path: '/teams',
     name: 'Mes troupes',
-    icon: 'aucune idée'
+    icon: iconTeam
   },
   {
     path: '/settings',
     name: 'Paramètres',
-    icon: 'aucune idée'
+    icon: iconParams
   },
 
 ]
 const AppBottomBar = () => {
   return (
     <StyledContainer>
-      {items.map(({path, name}, index) => (
+      {items.map(({path, name, icon}, index) => (
         <StyledLink key={index} to={path}>
+          <img src={icon} alt={name} />
           {name}
         </StyledLink>
       ))}

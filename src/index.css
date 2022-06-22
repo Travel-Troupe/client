@@ -15,6 +15,7 @@
 	--color-grey-light: #F6F6F6;
 	--color-grey-black: #191919;
 	--color-white: #fff;
+	--color-black: #000;
   }
 
 html, body, div, span, applet, object, iframe,
@@ -34,7 +35,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -43,8 +44,8 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	font-family: 'Inter', sans-serif;
 	line-height: 1;
-  font-family: sans-serif;
 }
 ol, ul {
 	list-style: none;
