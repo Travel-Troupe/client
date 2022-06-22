@@ -8,7 +8,8 @@ import Label from './label'
 import Image from './Image'
 import Logo from './Logo'
 import styled from 'styled-components'
-
+import cover from '../assets/cover-login.jpg'
+import logo from '../assets/logo-tt.png'
 
 const Form = styled.form`
   display: flex;
@@ -44,9 +45,8 @@ const LoginForm = () => {
 
   return (
     <Form onSubmit={logIn}>
-      <Image src={"./assets/cover-login.jpg"}></Image>
-
-      <Logo src={"./assets/logo-tt.png"}></Logo>
+      <Image src={cover} />
+      <Logo src={logo} />
       <StyledDiv className="">
         <Label>Nom d'utilisateur</Label>
         <Input name="username" placeholder="Nom d'utilisateur" value={username} onChange={onUsernameChange} type="text"></Input>

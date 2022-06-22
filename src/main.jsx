@@ -6,11 +6,9 @@ import { AuthProvider } from './store/contexts/AuthContext';
 import { UserProvider } from './store/contexts/UserContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <UserProvider>
-        <App />
-      </UserProvider>
-    </AuthProvider>
-  </React.StrictMode>
+  <AuthProvider>
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </AuthProvider>
 )
