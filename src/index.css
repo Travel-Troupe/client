@@ -3,6 +3,20 @@
    License: none (public domain)
 */
 
+#root {
+	height: 100vh;
+}
+:root {
+	--color-green: #79BFA4;
+	--color-orange: #FF8C42;
+	--color-orange: #FF8C42;
+	--color-grey-dark: #747C92;
+	--color-grey: #BCBCBC;
+	--color-grey-light: #F6F6F6;
+	--color-grey-black: #191919;
+	--color-white: #fff;
+  }
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
