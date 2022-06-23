@@ -14,6 +14,7 @@ import indexBg from './assets/cover-home.jpg'
 import TeamFunnel from './pages/TeamFunnel/TeamFunnel';
 import CreateTeam from './pages/TeamFunnel/CreateTeam';
 import JoinTeam from './pages/TeamFunnel/JoinTeam';
+import TeamsList from './pages/TeamsList';
 
 const StyledWrapper = styled.div`
   background-size: cover;
@@ -43,6 +44,7 @@ const AppNavigation = () => {
         <AppView>
           <Routes>
             <Route path="/" element={<TravelsList />} />
+            <Route path="/Teams" element={<TeamsList />} />
 
             {/* Team */}
             <Route path="/team-funnel" element={<TeamFunnel />} />
