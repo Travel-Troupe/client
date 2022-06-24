@@ -15,6 +15,7 @@ import TeamFunnel from './pages/TeamFunnel/TeamFunnel';
 import CreateTeam from './pages/TeamFunnel/CreateTeam';
 import JoinTeam from './pages/TeamFunnel/JoinTeam';
 import TeamsList from './pages/TeamsList';
+import Travel from './pages/Travel';
 
 const StyledWrapper = styled.div`
   background-size: cover;
@@ -44,14 +45,15 @@ const AppNavigation = () => {
         <AppView>
           <Routes>
             <Route path="/" element={<TravelsList />} />
-            <Route path="/Teams" element={<TeamsList />} />
+            <Route path="/teams" element={<TeamsList />} />
 
             {/* Team */}
-            <Route path="/team-funnel" element={<TeamFunnel />} />
-            <Route path="/team-funnel/create" element={<CreateTeam />} />
-            <Route path="/team-funnel/join" element={<JoinTeam />} />
+            <Route path="team-funnel" element={<TeamFunnel />} />
+            <Route path="team-funnel/create" element={<CreateTeam />} />
+            <Route path="team-funnel/join" element={<JoinTeam />} />
 
             {/* Travel */}
+            <Route path="travel/:travelId" element={<Travel />}/>
           </Routes>
         </AppView>
         <AppBottomBar />
