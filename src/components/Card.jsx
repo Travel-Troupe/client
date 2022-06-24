@@ -9,6 +9,7 @@ const StyledCard = styled.div`
   margin-top: 20px;
   background-color: var(--color-white);
   border-radius: 6px;
+  text-decoration: none;
 
   img {
     width: 60%;
@@ -24,28 +25,35 @@ const StyledCard = styled.div`
 
   .title {
     font-size: 12px;
+    text-decoration: none;
+    color: initial;
   }
-
+  
   .subtitle {
     font-size: 10px;
     color: var(--color-grey);
+    text-decoration: none;
+    color: initial;
   }
-
+  
   .desc {
     margin-top: 5px;
     font-size: 10px;
     font-weight: 600;
+    text-decoration: none;
+    color: initial;
   }
 `
 
-const Card = () => {
+const Card = ({travel, ...props}) => {
+  const { name, location, picture } = travel
   return (
-    <StyledCard>
-      <img src={img} alt="" />
+    <StyledCard {...props}>
+      <img src={picture ?? img} alt="" />
       <div className='content'>
-        <h2 className='title'>Road Trip USA 2022 </h2>
-        <span className='subtitle'>Budget : 22 984$</span>
-        <p className='desc'>Voyage de Chicago à New York en passant par Boston</p>
+        <h2 className='title'>{location?.place_name ?? "Destination inconnu"}</h2>
+        <span className='subtitle'>{name}</span>
+        {/* <p className='desc'>Voyage de Chicago à New York en passant par Boston</p> */}
       </div>
     </StyledCard>
   )
