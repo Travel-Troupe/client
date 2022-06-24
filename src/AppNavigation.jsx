@@ -34,6 +34,7 @@ const AppWrapper = (props) => {
 
 const AppView = styled.div`
   height: calc(100vh - 67px);
+  padding: 100px 20px 20px 20px;
   overflow-y: scroll;
 `
 
