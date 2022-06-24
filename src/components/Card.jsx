@@ -4,7 +4,7 @@ import img from '../assets/cover.jpg'
 
 const StyledCard = styled.div`
   display: flex;
-  width: 80%;
+  width: 100%;
   padding: 12px;
   margin-top: 20px;
   background-color: var(--color-white);

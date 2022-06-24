@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 30px 10px;
+  padding: 5px 30px 0 30px;
   background-color: var(--color-white);
 `
 
@@ -22,7 +22,7 @@ const StyledLink = styled(Link)`
   align-items: center;
   padding: 8px 16px;
   color: var(--color-black);
-  font-size: 14px;
+  font-size: 10px;
   text-decoration: none;
   text-align: center;
 
