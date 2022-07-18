@@ -4,7 +4,7 @@ import useFetch from '../hooks/useFetch'
 import Accordion from '../components/Accordion'
 
 
-const Styledtitle = styled.h2`
+const StyledTitle = styled.h2`
   font-size: 0.675rem;
   color: var(--color-white);
 `
@@ -15,10 +15,10 @@ const TeamsList = () => {
   const hasData = data && data.length
   return (
     <div>
-      <Styledtitle>Liste de toutes vos troupes: </Styledtitle>
+      <StyledTitle>Liste de toutes vos troupes: </StyledTitle>
       {hasData && (
         data.map(({name, teamComposition, _id: id}) => (
-          <Accordion name={name}/>
+          <Accordion name={name} members={teamComposition}/>
         ))
       )}
     </div>

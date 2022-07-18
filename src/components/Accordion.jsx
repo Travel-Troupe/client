@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp} from 'react-icons/md';
-import { BsFillPlusCircleFill } from 'react-icons/bs';
 import img from '../assets/profil.jpg'
+import arrowDown from '../assets/icons/down-arrow.png'
+import arrowUp from '../assets/icons/up-arrow.png'
 
 const StyledAccordion = styled.div`
   display: flex;
@@ -60,27 +60,30 @@ const StyledMembersList = styled.div`
   }
 `;
 
-const Accordion = ({name, ...props})  => {
+const Accordion = ({name, members, ...props})  => {
   const [clicked, setClicked] = useState(false);
 
   const toggle = () => {
     setClicked(!clicked);
   };
 
+  console.log("members => ", members)
   return (
       <StyledAccordion {...props}>
             <StyledWrap onClick={() => toggle()} >
                         <p>{name}</p>
-                        <span>{clicked ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}</span>
+                        <span>{clicked ? <img src={arrowUp} alt="" /> : <img src={arrowDown} alt="" />}</span>
             </StyledWrap>
             {clicked && (
                   <StyledDropdown>
                     <p>Mes membres</p>
                     <StyledMembersList>
-                        <img src={img} alt="" />
-                        <img src={img} alt="" />
-                        <img src={img} alt="" />
-                        <BsFillPlusCircleFill size={28} color="#79BFA4" />
+                    {members && (
+                      members.map( member => (
+                        <img src={member.image ? member.image : img} alt="" />
+
+                      ))
+                    )}
                     </StyledMembersList >
                   </StyledDropdown>
                 )}
