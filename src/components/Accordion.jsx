@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import img from '../assets/profil.jpg'
-import arrowDown from '../assets/icons/down-arrow.png'
-import arrowUp from '../assets/icons/up-arrow.png'
 
 const StyledAccordion = styled.div`
   display: flex;
@@ -72,7 +70,7 @@ const Accordion = ({name, members, ...props})  => {
       <StyledAccordion {...props}>
             <StyledWrap onClick={() => toggle()} >
                         <p>{name}</p>
-                        <span>{clicked ? <img src={arrowUp} alt="" /> : <img src={arrowDown} alt="" />}</span>
+                        <span>{clicked ? <i class="gg-chevron-up"></i> : <i class="gg-chevron-down"></i>}</span>
             </StyledWrap>
             {clicked && (
                   <StyledDropdown>
