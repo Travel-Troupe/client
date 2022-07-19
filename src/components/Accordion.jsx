@@ -70,7 +70,7 @@ const Accordion = ({name, members, ...props})  => {
       <StyledAccordion {...props}>
             <StyledWrap onClick={() => toggle()} >
                         <p>{name}</p>
-                        <span>{clicked ? <i class="gg-chevron-up"></i> : <i class="gg-chevron-down"></i>}</span>
+                        <span>{<i className={`gg-chevron-${clicked ? 'up' : 'down'}`} />}</span>
             </StyledWrap>
             {clicked && (
                   <StyledDropdown>
