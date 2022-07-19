@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import useFetch from '../hooks/useFetch'
+import Accordion from '../components/Accordion'
 
-const StyledCard = styled.div`
-  background-color: var(--color-white);
-  padding: 12px;
-  border-radius: 6px;
-  margin: 8px;
+
+const StyledTitle = styled.h2`
+  font-size: 0.675rem;
+  color: var(--color-white);
 `
 
 const TeamsList = () => {
@@ -15,13 +15,10 @@ const TeamsList = () => {
   const hasData = data && data.length
   return (
     <div>
-      <h2>TeamsList</h2>
+      <StyledTitle>Liste de toutes vos troupes: </StyledTitle>
       {hasData && (
         data.map(({name, teamComposition, _id: id}) => (
-          <StyledCard key={id}>
-            {name}<br/>
-            {teamComposition.length} membres
-          </StyledCard>
+          <Accordion name={name} members={teamComposition}/>
         ))
       )}
     </div>

@@ -1,10 +1,10 @@
 /* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
+v2.0 | 20110126
+License: none (public domain)
 */
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #root {
@@ -20,7 +20,7 @@
 	--color-grey-black: #191919;
 	--color-white: #fff;
 	--color-black: #000;
-  }
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -39,7 +39,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-
+	
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -65,4 +65,54 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+.gg-chevron-down {
+	box-sizing: border-box;
+	position: relative;
+	display: block;
+	transform: scale(var(--ggs,1));
+	width: 22px;
+	height: 22px;
+	border: 2px solid transparent;
+	border-radius: 100px
+}
+
+.gg-chevron-down::after {
+	content: "";
+	display: block;
+	box-sizing: border-box;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-bottom: 2px solid;
+	border-right: 2px solid;
+	transform: rotate(45deg);
+	left: 4px;
+	top: 2px
+}
+
+.gg-chevron-up {
+	box-sizing: border-box;
+	position: relative;
+	display: block;
+	transform: scale(var(--ggs,1));
+	width: 22px;
+	height: 22px;
+	border: 2px solid transparent;
+	border-radius: 100px
+}
+
+.gg-chevron-up::after {
+	content: "";
+	display: block;
+	box-sizing: border-box;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-top: 2px solid;
+	border-right: 2px solid;
+	transform: rotate(-45deg);
+	left: 4px;
+	bottom: 2px
 }
