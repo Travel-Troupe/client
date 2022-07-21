@@ -60,7 +60,7 @@ const AppNavigation = () => {
             <Route path="travel/:travelId" element={<Travel />}/>
             {/* Travel Funnel */}
             <Route path="travel/create-travel" element={<Team />}/>
-            <Route path="travel/create-travel/destination" element={<Destination />}/>
+            <Route path="travel/create-travel/destination/:teamId" element={<Destination />}/>
           </Routes>
         </AppView>
         <AppBottomBar />

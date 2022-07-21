@@ -62,29 +62,27 @@ const Accordion = ({name, members, ...props})  => {
   const [clicked, setClicked] = useState(false);
 
   const toggle = () => {
-    setClicked(!clicked);
+    setClicked( c => !c);
   };
 
-  console.log("members => ", members)
   return (
       <StyledAccordion {...props}>
-            <StyledWrap onClick={() => toggle()} >
-                        <p>{name}</p>
-                        <span>{<i className={`gg-chevron-${clicked ? 'up' : 'down'}`} />}</span>
-            </StyledWrap>
-            {clicked && (
-                  <StyledDropdown>
-                    <p>Mes membres</p>
-                    <StyledMembersList>
-                    {members && (
-                      members.map( member => (
-                        <img src={member.image ? member.image : img} alt="" />
-
-                      ))
-                    )}
-                    </StyledMembersList >
-                  </StyledDropdown>
-                )}
+        <StyledWrap onClick={() => toggle()}>
+          <p>{name}</p>
+          <i className={`gg-chevron-${clicked ? 'up' : 'down'}`} />
+        </StyledWrap>
+        {clicked && (
+          <StyledDropdown>
+            <p>Mes membres</p>
+            <StyledMembersList>
+            {members && (
+              members.map( member => (
+                <img src={member.image ? member.image : img} alt="" />
+              ))
+            )}
+            </StyledMembersList >
+          </StyledDropdown>
+        )}
     </StyledAccordion>
   );
 };
