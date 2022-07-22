@@ -16,6 +16,9 @@ import CreateTeam from './pages/TeamFunnel/CreateTeam';
 import JoinTeam from './pages/TeamFunnel/JoinTeam';
 import TeamsList from './pages/TeamsList';
 import Travel from './pages/Travel';
+import MapboxAutocomplete from './components/MapboxAutocomplete';
+import Destination from "./pages/TravelFunnel/Destination";
+import Team from "./pages/TravelFunnel/Team";
 
 const StyledWrapper = styled.div`
   background-size: cover;
@@ -29,7 +32,7 @@ const AppWrapper = (props) => {
   const path = Object.keys(appBackground)
     .find(pattern => matchPath(pattern, location.pathname))
   const bg = path ? appBackground[path] : indexBg
-  
+
   return <StyledWrapper bg={bg} {...props} />
 }
 
@@ -55,6 +58,9 @@ const AppNavigation = () => {
 
             {/* Travel */}
             <Route path="travel/:travelId" element={<Travel />}/>
+            {/* Travel Funnel */}
+            <Route path="travel/create-travel" element={<Team />}/>
+            <Route path="travel/create-travel/destination/:teamId" element={<Destination />}/>
           </Routes>
         </AppView>
         <AppBottomBar />

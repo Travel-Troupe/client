@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import Profil from '../components/Profil'
 import ImgProfil from '../assets/profil.jpg'
 import Badge from '../components/Badge'
-import moment from 'moment'
+import formatDate from "../utils/formatDate";
 
 const StyledContainer = styled.div`
   min-height: 100vh;
@@ -89,9 +89,8 @@ const Travel = (props) => {
                     </div>
                     <div className='badge'>
                       <Badge>Définir un budjet</Badge>
-                      <Badge grey>{moment(data.startDate).format('DD/MM/YYYY')}</Badge>
+                      <Badge grey>{formatDate(new Date(data.startDate))}</Badge>
                     </div>
-
                   </div>
                 </div>
                 <img className='background' src={data.picture} />

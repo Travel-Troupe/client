@@ -28,6 +28,8 @@ const useFetch = (url, options = {}, deps = [], immediate = true) => {
 
       const res = await req.json();
       setState(res)
+      setLoading(false)
+      return res
     } catch(e) {
       setError(e)
     } finally {
