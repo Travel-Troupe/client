@@ -4,12 +4,13 @@ import useFetch from '../hooks/useFetch'
 import AppHeader from '../components/AppHeader'
 import styled from 'styled-components'
 import Profil from '../components/Profil'
+import CardSm from '../components/CardSm'
 import ImgProfil from '../assets/profil.jpg'
 import Badge from '../components/Badge'
 import formatDate from "../utils/formatDate";
 
 const StyledContainer = styled.div`
-  min-height: 100vh;
+  min-height: 100%;
 `
 
 const StyledCard = styled.div`
@@ -25,6 +26,10 @@ const StyledCard = styled.div`
     bottom: 10px;
     left: 20px;
     z-index: 2;
+  }
+
+  .flex {
+    display: flex;
   }
 
   .name {
@@ -67,6 +72,12 @@ const StyledCard = styled.div`
   }
 `
 
+const Flex = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
+
 const Travel = (props) => {
   const { travelId } = useParams()
   const { data, error, loading } = useFetch(`/travel/${travelId}`)
@@ -97,6 +108,13 @@ const Travel = (props) => {
                 </StyledCard>
             )
           }
+      <Flex>
+          <CardSm icon={'gg-layout-list'}>Tâches</CardSm>
+          <CardSm icon={'gg-file'}>Documents</CardSm>
+          <CardSm icon={'map icon'}>Etapes clés</CardSm>
+          <CardSm icon={'gg-euro'}>Budget</CardSm>
+
+      </Flex>
     </StyledContainer>
   )
 }
