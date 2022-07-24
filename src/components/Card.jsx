@@ -53,7 +53,7 @@ const Card = ({travel, ...props}) => {
       <div className='content'>
         <h2 className='title'>{location?.place_name ?? "Destination inconnu"}</h2>
         <span className='subtitle'>{name}</span>
-        {/* <p className='desc'>Voyage de Chicago à New York en passant par Boston</p> */}
+         {/*<p className='desc'>Voyage de Chicago à New York en passant par Boston</p> */}
       </div>
     </StyledCard>
   )

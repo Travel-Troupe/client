@@ -25,7 +25,7 @@ const fetchData = async ({searchText, locationTypes}) => {
   }
 }
 
-const MapboxAutocomplete = ({ locationTypes, onChange: onValueChange, value }) => {
+const MapboxAutocomplete = ({ locationTypes, onChange: onValueChange, value, ...props }) => {
   const [result, setResult] = useState([])
 
   const onChange = useCallback((e) => {
@@ -52,6 +52,7 @@ const MapboxAutocomplete = ({ locationTypes, onChange: onValueChange, value }) =
       value={value}
       onSelect={onValueChange}
       suggestions={result}
+      {...props}
     />
   )
 }

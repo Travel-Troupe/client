@@ -25,7 +25,7 @@ export const login = async ({ username, password }) => {
 
 export const createTravel = async ({ teamId, name, startDate, locationPoi }) => {
   try {
-    if (teamId && name, startDate, locationPoi) {
+    if (teamId && name && startDate && locationPoi) {
       console.log('requesting', `${API_URL}/travel/add`)
       const token = (await getItem('token')) || ''
       const req = await fetch(`${API_URL}/travel/add`, {
@@ -40,6 +40,31 @@ export const createTravel = async ({ teamId, name, startDate, locationPoi }) => 
 
       return res
     }
+    throw new Error('please provide valid params')
+  } catch(e) {
+    console.error(e)
+    return { error: e.message }
+  }
+}
+
+export const addStep = async ({ travelId, name, description = '', startDate, address }) => {
+  try {
+    if (travelId && name && startDate && address) {
+      console.log('requesting', `${API_URL}/travel/newStep`)
+      const token = (await getItem('token')) || ''
+      const req = await fetch(`${API_URL}/travel/newStep`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, travelId, startDate, address, description })
+      })
+      const res = await req.json()
+
+      return res
+    }
+    console.log(teamId)
     throw new Error('please provide valid params')
   } catch(e) {
     console.error(e)
