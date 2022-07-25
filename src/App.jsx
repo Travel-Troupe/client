@@ -4,6 +4,7 @@ import AppNavigation from './AppNavigation'
 import { LOGIN } from './store/actions/AuthActions'
 import AuthContext from './store/contexts/AuthContext'
 import { getItem } from './utils/AppStorage'
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 function App() {
   const { state, dispatch } = useContext(AuthContext)
