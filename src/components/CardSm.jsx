@@ -33,9 +33,7 @@ position: relative;
 
 const CardSm = (props) => {
   return (
-    <StyledCardSm {...props}
-      as={Link}
-      to={`/travel}`}>
+    <StyledCardSm {...props}>
       <i className={props.icon}></i>
       <p>{props.children}</p>
     </StyledCardSm>

@@ -19,6 +19,8 @@ import Travel from './pages/Travel';
 import MapboxAutocomplete from './components/MapboxAutocomplete';
 import Destination from "./pages/TravelFunnel/Destination";
 import Team from "./pages/TravelFunnel/Team";
+import Steps from "./pages/Steps";
+import Step from "./pages/Step";
 
 const StyledWrapper = styled.div`
   background-size: cover;
@@ -58,6 +60,8 @@ const AppNavigation = () => {
 
             {/* Travel */}
             <Route path="travel/:travelId" element={<Travel />}/>
+            <Route path="travel/:travelId/steps" element={<Steps />}/>
+            <Route path="travel/:travelId/steps/:stepId" element={<Step />}/>
             {/* Travel Funnel */}
             <Route path="travel/create-travel" element={<Team />}/>
             <Route path="travel/create-travel/destination/:teamId" element={<Destination />}/>
