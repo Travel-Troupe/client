@@ -3,6 +3,33 @@ import { Link } from 'react-router-dom'
 import Button from '../../components/Button'
 import Input from '../../components/Input'
 import useFetch from '../../hooks/useFetch'
+import Text from '../../components/Text'
+import styled from 'styled-components'
+
+const StyledTeam = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  input {
+    &:disabled {
+      background-color: var(--color-grey);
+      color: var(--color-white);
+    }
+  }
+  `
 
 const JoinTeam = () => {
   const [state, setState] = useState('')
@@ -25,8 +52,8 @@ const JoinTeam = () => {
   const hasData = data && data?.message
 
   return (
-    <div>
-      <div>JoinTeam</div>
+    <StyledTeam>
+      <Text>JoinTeam</Text>
       {hasData && (
         <div>
           <p>bravo vous avez bien rejoins la team lol</p>
@@ -39,7 +66,7 @@ const JoinTeam = () => {
           <Button type="submit">Rejoindre</Button>
         </form>
       )}
-    </div>
+    </StyledTeam>
   )
 }
 
