@@ -3,7 +3,7 @@ import styled, { css }   from 'styled-components'
 const Button = styled.button`
   display: inline-block;
   padding: 15px 35px;
-  background: ${({secondary}) => secondary ? 'transparent' : 'var(--color-green)'};
+  background: ${({secondary, ternary}) => secondary ? 'transparent' : ternary ? 'var(--color-grey-dark)' : 'var(--color-green)'};
   border: none;
   color: white;
   text-transform: uppercase;
