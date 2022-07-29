@@ -7,7 +7,7 @@ import Input from './Input'
 import Label from './label'
 import Logo from './Logo'
 import styled from 'styled-components'
-import cover from '../assets/cover-login.jpg'
+import cover from '../assets/cover.jpg'
 import logo from '../assets/logo-tt.png'
 import { Link, useSearchParams } from 'react-router-dom'
 import Text from './Text';
@@ -21,10 +21,16 @@ const Form = styled.form`
   background: no-repeat url(${cover}) center center;
   background-size: cover;
 
-  .label {
+  .label, .valid-text {
     color: white;
     font-size: 14px;
     margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .valid-text {
+    margin-top: 20px;
+    width: 70%;
   }
 `
 
@@ -59,7 +65,7 @@ const LoginForm = () => {
   return (
     <Form onSubmit={logIn}>
       <Logo src={logo} />
-      {accountCreated && <Text>votre compte a bien été crée, vous pouvez désormais vous connecter</Text>}
+      {accountCreated && <Text className='valid-text'>votre compte a bien été crée, vous pouvez désormais vous connecter</Text>}
       <StyledDiv className="">
         <Label>Nom d'utilisateur</Label>
         <Input name="username" placeholder="Nom d'utilisateur" value={username} onChange={onUsernameChange} type="text"></Input>
