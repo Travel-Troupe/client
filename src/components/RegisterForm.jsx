@@ -9,6 +9,7 @@ import Logo from './Logo'
 import styled from 'styled-components'
 import cover from '../assets/cover-login.jpg'
 import logo from '../assets/logo-tt.png'
+import { Link, useNavigate } from 'react-router-dom';
 
 const Form = styled.form`
   display: flex;
@@ -36,22 +37,26 @@ const RegisterForm = () => {
   const [password, setPassword] = React.useState('')
 
   const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
 
   const onUsernameChange = e => setUsername(e.target.value)
   const onPasswordChange = e => setPassword(e.target.value)
 
-  const register = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     if (username && password) {
       const res = await register({ username, password })
-      if (res.token) {
-        await User.register({ dispatch, token: res.token })
+      if (res.name) {
+        navigate('/?accountCreated=true')
+      } else if (res.error) {
+
       }
     }
   }
 
   return (
-    <Form onSubmit={register}>
+    <Form onSubmit={onSubmit}>
       <Logo src={logo} />
       <StyledDiv className="">
         <Label>Nom d'utilisateur</Label>
@@ -63,7 +68,8 @@ const RegisterForm = () => {
         <Input name="password" placeholder="Mot de passe" value={password} onChange={onPasswordChange} type="password"></Input>
       </StyledDiv>
 
-      <a className='label' href="/login">Se connecter</a>
+      <Link className='label' to="/">Se connecter</Link>
+
 
       <Button type="submit">S'inscrire</Button>
 

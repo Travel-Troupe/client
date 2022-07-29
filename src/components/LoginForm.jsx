@@ -9,7 +9,8 @@ import Logo from './Logo'
 import styled from 'styled-components'
 import cover from '../assets/cover-login.jpg'
 import logo from '../assets/logo-tt.png'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
+import Text from './Text';
 
 const Form = styled.form`
   display: flex;
@@ -36,7 +37,11 @@ const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = React.useState('')
 
+  
   const { dispatch } = useContext(AuthContext);
+  
+  const [searchParams] = useSearchParams();
+  const [accountCreated] = useState(searchParams.get('accountCreated') === "true")
 
   const onUsernameChange = e => setUsername(e.target.value)
   const onPasswordChange = e => setPassword(e.target.value)
@@ -54,6 +59,7 @@ const LoginForm = () => {
   return (
     <Form onSubmit={logIn}>
       <Logo src={logo} />
+      {accountCreated && <Text>votre compte a bien été crée, vous pouvez désormais vous connecter</Text>}
       <StyledDiv className="">
         <Label>Nom d'utilisateur</Label>
         <Input name="username" placeholder="Nom d'utilisateur" value={username} onChange={onUsernameChange} type="text"></Input>
@@ -64,7 +70,7 @@ const LoginForm = () => {
         <Input name="password" placeholder="Mot de passe" value={password} onChange={onPasswordChange} type="password"></Input>
       </StyledDiv>
 
-      <a className='label' href="/register">S'inscrire</a>
+      <Link className='label' to="/register">S'inscrire</Link>
 
       <Button type="submit">Connexion</Button>
 
