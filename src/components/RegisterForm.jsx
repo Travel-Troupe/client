@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import AuthContext from '../store/contexts/AuthContext';
-import { login } from '../services/Api'
+import { register } from '../services/Api'
 import * as User from '../services/User'
 import Button from './Button'
 import Input from './Input'
@@ -9,7 +9,6 @@ import Logo from './Logo'
 import styled from 'styled-components'
 import cover from '../assets/cover-login.jpg'
 import logo from '../assets/logo-tt.png'
-import { Link } from 'react-router-dom'
 
 const Form = styled.form`
   display: flex;
@@ -32,7 +31,7 @@ const StyledDiv = styled.div`
   width: 70%;
 `
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = React.useState('')
 
@@ -41,18 +40,18 @@ const LoginForm = () => {
   const onUsernameChange = e => setUsername(e.target.value)
   const onPasswordChange = e => setPassword(e.target.value)
 
-  const logIn = async (e) => {
+  const register = async (e) => {
     e.preventDefault()
     if (username && password) {
-      const res = await login({ username, password })
+      const res = await register({ username, password })
       if (res.token) {
-        await User.login({ dispatch, token: res.token })
+        await User.register({ dispatch, token: res.token })
       }
     }
   }
 
   return (
-    <Form onSubmit={logIn}>
+    <Form onSubmit={register}>
       <Logo src={logo} />
       <StyledDiv className="">
         <Label>Nom d'utilisateur</Label>
@@ -64,13 +63,13 @@ const LoginForm = () => {
         <Input name="password" placeholder="Mot de passe" value={password} onChange={onPasswordChange} type="password"></Input>
       </StyledDiv>
 
-      <a className='label' href="/register">S'inscrire</a>
+      <a className='label' href="/login">Se connecter</a>
 
-      <Button type="submit">Connexion</Button>
+      <Button type="submit">S'inscrire</Button>
 
     </Form>
   )
 }
 
 
-export default LoginForm
+export default RegisterForm
