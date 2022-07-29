@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
-import LoginForm from './components/LoginForm'
 import AppNavigation from './AppNavigation'
+import LoginNavigation from './LoginNavigation'
 import { LOGIN } from './store/actions/AuthActions'
 import AuthContext from './store/contexts/AuthContext'
 import { getItem } from './utils/AppStorage'
@@ -24,7 +24,7 @@ function App() {
   //   return <TravelTunnel />
   // }
 
-  return isLogged ? <AppNavigation /> : <LoginForm />
+  return isLogged ? <AppNavigation /> : <LoginNavigation />
 }
 
 export default App

@@ -23,6 +23,28 @@ export const login = async ({ username, password }) => {
   }
 }
 
+export const register = async ({ username, password }) => {
+  try {
+    if (username && password) {
+      console.log('requesting', `${API_URL}/register`)
+      const req = await fetch(`${API_URL}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: username, password })
+      })
+      const res = await req.json()
+
+      return res
+    }
+    throw new Error('please provide a valid username and password')
+  } catch(e) {
+    console.error(e)
+    return { error: e.message }
+  }
+}
+
 export const createTravel = async ({ teamId, name, startDate, locationPoi }) => {
   try {
     if (teamId && name && startDate && locationPoi) {
