@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
 import AppHeader from '../components/AppHeader'
 import styled from 'styled-components'
@@ -111,7 +111,13 @@ const Travel = (props) => {
       <Flex>
           <CardSm icon={'gg-layout-list'}>Tâches</CardSm>
           <CardSm icon={'gg-file'}>Documents</CardSm>
-          <CardSm icon={'map icon'}>Etapes clés</CardSm>
+          <CardSm
+            as={Link}
+            to={`/travel/${travelId}/steps`}
+            icon={'map icon'}
+          >
+            Étapes clés
+          </CardSm>
           <CardSm icon={'gg-euro'}>Budget</CardSm>
 
       </Flex>

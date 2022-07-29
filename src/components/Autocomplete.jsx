@@ -3,9 +3,13 @@ import styled from "styled-components";
 import Input from "./Input";
 
 const StyledInputContainer = styled.div`
+  position: relative;
   .autocomplete__list-container {
     display: none;
+    position: absolute;
     list-style-type: none;
+    width: 100%;
+    top: 100%;
     padding: 0;
     margin: 4px 0 0;
     border: solid 1px #eee;
@@ -85,7 +89,7 @@ export default function Autocomplete({
       />
       <ul className="autocomplete__list-container">
         {suggestions.length === 0 && <li>
-          Enter a value
+          Choisir un lieu
         </li>}
         {suggestions.map((suggestion, index) => (
           <li
