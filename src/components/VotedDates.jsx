@@ -52,11 +52,11 @@ const VotedDates = ()  => {
 
   return (
       <StyledDateContainer>
-        <StyledDateProposition color={voted ? '#FF8C42' : 'white'} textColor={voted ? 'white' : '#191919'}>
+        <StyledDateProposition color={voted ? '#fb8d47' : 'white'} textColor={voted ? 'white' : '#191919'}>
             <img src={img} alt="" />
             <p> 18/06/2023 - 11/07/2023</p>
         </StyledDateProposition>
-        <StyledVoteAction color={voted ? '#FF8C42' : 'white'} onClick={setVote}>
+        <StyledVoteAction color={voted ? '#fb8d47' : 'white'} onClick={setVote}>
           <p>Voter</p>
           <img src={voted ? OrangStar : whiteStar} alt="" />
         </StyledVoteAction>

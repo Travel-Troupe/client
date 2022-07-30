@@ -10,6 +10,12 @@ const StyledTitle = styled.h2`
   color: var(--color-white);
   `
 
+const StyledDateSubtitle = styled.p`
+  font-size: 0.675rem;
+  color: var(--color-white);
+  margin-top: .25rem;
+`
+
 const StyledTSubitle = styled.p`
   font-size: 0.675rem;
   color: var(--color-white);
@@ -42,7 +48,6 @@ const InputIconStyled = styled.div`
     position: relative;
     background-color: white;
     display: flex;
-    margin-top: 1rem;
     align-items: center;
     border-radius: 0.25rem;
     min-height: 44px;
@@ -114,6 +119,7 @@ const TeamAvailability = ({team, ...props}) => {
       {proposedDate && proposedDate.length > 1 && 
       proposedDate.map((date, index) =>
         <>
+        <StyledDateSubtitle>Choix {index+1}</StyledDateSubtitle>
         <InputIconStyled key={index}>
             <TextStyled>
                 {FormatDate(date.from)} - {FormatDate(date.to)}
