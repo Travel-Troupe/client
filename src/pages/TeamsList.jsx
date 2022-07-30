@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import useFetch from '../hooks/useFetch'
 import Accordion from '../components/Accordion'
+import { Link } from 'react-router-dom'
 
 
 const StyledTitle = styled.h2`
@@ -18,7 +19,9 @@ const TeamsList = () => {
       <StyledTitle>Liste de toutes vos troupes: </StyledTitle>
       {hasData && (
         data.map(({name, teamComposition, _id: id}) => (
-          <Accordion name={name} members={teamComposition}/>
+          <Link to={'/team-funnel/availability'} travel={data}>
+            <Accordion name={name} members={teamComposition}/>
+          </Link>
         ))
       )}
     </div>
