@@ -33,7 +33,9 @@ const TeamsList = () => {
       <StyledTitle>Liste de toutes vos troupes: </StyledTitle>
       {hasData && (
         data.map(({name, teamComposition, _id: id}) => (
-          <Accordion name={name} members={teamComposition}/>
+          <Link to={'/team-funnel/availability'} travel={data}>
+            <Accordion name={name} members={teamComposition}/>
+          </Link>
         ))
       )}
 
