@@ -82,6 +82,23 @@ const TextOrStyled = styled.p `
   margin-inline: 10px;
   color: var(--color-white);
 `
+const SubmitButton = styled.button `
+  background-color: var(--color-green);
+  border-radius: 5px;
+  color: white;
+  padding: 8px 23px;
+  text-align: center;
+  -webkit-text-decoration: none;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+`
 
 function FormatDate(date) {
   return `${date?.day}/${date?.month}/${date?.year}`
@@ -138,6 +155,8 @@ const TeamAvailability = ({team, ...props}) => {
       <StyledTitle> Disponiblité de votre troupe </StyledTitle>
       <StyledTSubitle>Voter pour une date parmi celles de votre troupe :</StyledTSubitle>
       <VotedDates />
+
+      <SubmitButton>SUIVANT</SubmitButton>
     </div>
   )
 }
