@@ -16,7 +16,8 @@ import CreateTeam from './pages/TeamFunnel/CreateTeam';
 import JoinTeam from './pages/TeamFunnel/JoinTeam';
 import TeamsList from './pages/TeamsList';
 import Travel from './pages/Travel';
-import TeamAvailability from './pages/TeamFunnel/TeamAvailability.jsx';
+import TeamAvailability from './pages/TeamFunnel/TeamAvailability';
+import TeamVoteResult from './pages/TeamFunnel/TeamVoteResult';
 
 const StyledWrapper = styled.div`
   background-size: cover;
@@ -52,8 +53,8 @@ const AppNavigation = () => {
             <Route path="team-funnel" element={<TeamFunnel />} />
             <Route path="team-funnel/create" element={<CreateTeam />} />
             <Route path="team-funnel/join" element={<JoinTeam />} />
-            <Route path="team-funnel/availability" element={<TeamAvailability />} />
-
+            <Route path="team-funnel/availability/:teamId" element={<TeamAvailability />} />
+            <Route path="team-funnel/votes/:teamId" element={<TeamVoteResult />} />
 
             {/* Travel */}
             <Route path="travel/:travelId" element={<Travel />}/>
