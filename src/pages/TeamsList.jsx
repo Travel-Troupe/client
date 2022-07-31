@@ -27,13 +27,14 @@ const TeamsList = () => {
   const { data, error, loading } = useFetch('/team/all')
 
   const hasData = data && data.length
+  console.log("dataa=> ", data)
   return (
     <StyledContent>
       <AppHeader></AppHeader>
       <StyledTitle>Liste de toutes vos troupes: </StyledTitle>
       {hasData && (
-        data.map(({name, teamComposition, _id: id}) => (
-          <Link to={'/team-funnel/availability'} travel={data}>
+        data.map(({name, teamComposition, validatedStartDate, _id: teamId}) => (
+          <Link to={validatedStartDate? '' : `/team-funnel/availability/${teamId}`} style={{ textDecoration: 'none' }}>
             <Accordion name={name} members={teamComposition}/>
           </Link>
         ))

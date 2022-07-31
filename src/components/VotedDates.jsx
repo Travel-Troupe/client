@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import img from '../assets/profil.jpg'
 import whiteStar from '../assets/icons/white-star.png'
 import OrangStar from '../assets/icons/star-voted.png'
+import moment from 'moment'
 
 const StyledDateContainer = styled.div `
     width: 100%;
@@ -46,18 +47,30 @@ const StyledVoteAction = styled.div `
     }
 `
 
+function formatAPIDate(date) {
+  return moment(date).format('DD/MM/YYYY');
+}
 
-const VotedDates = ()  => {
+
+const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVote})  => {
   const [voted, setVote] = useState(false);
 
+  const onClickForVote = (proposalId) => {
+    if (!voted) {
+      addVote(proposalId)
+    } else {
+      removeVote(proposalId)
+    }
+    setVote(!voted)
+  }
   return (
       <StyledDateContainer>
         <StyledDateProposition color={voted ? '#fb8d47' : 'white'} textColor={voted ? 'white' : '#191919'}>
             <img src={img} alt="" />
-            <p> 18/06/2023 - 11/07/2023</p>
+            <p> {formatAPIDate(startDate)} - {formatAPIDate(endDate)}</p>
         </StyledDateProposition>
-        <StyledVoteAction color={voted ? '#fb8d47' : 'white'} onClick={setVote}>
-          <p>Voter</p>
+        <StyledVoteAction color={voted ? '#fb8d47' : 'white'} onClick={() => onClickForVote(proposalId)}>
+          <p>{subtile}</p>
           <img src={voted ? OrangStar : whiteStar} alt="" />
         </StyledVoteAction>
       </StyledDateContainer>

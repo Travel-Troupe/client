@@ -65,7 +65,6 @@ const Accordion = ({name, members, ...props})  => {
     setClicked(!clicked);
   };
 
-  console.log("members => ", members)
   return (
       <StyledAccordion {...props}>
             <StyledWrap onClick={() => toggle()} >
