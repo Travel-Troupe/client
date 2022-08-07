@@ -146,3 +146,29 @@ export const voteForDate = async ({ teamId, proposalId}) => {
     return { error: e.message }
   }
 }
+
+export const validDate = async ({ teamId, startDate, endDate}) => {
+  try {
+    if (teamId && startDate && endDate) {
+      console.log('requesting', `${API_URL}/team/dates/valid`)
+      const token = (await getItem('token')) || ''
+      const req = await fetch(`${API_URL}/team/dates/valid`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ teamId, startDate, endDate})
+      })
+      const res = await req.json()
+
+      return res
+    }
+    console.log(teamId)
+    throw new Error('please provide valid params')
+  } catch(e) {
+    console.log("erreur coté api")
+    console.error(e)
+    return { error: e.message }
+  }
+}

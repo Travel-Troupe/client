@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import img from '../assets/profil.jpg'
 import whiteStar from '../assets/icons/white-star.png'
 import OrangStar from '../assets/icons/star-voted.png'
-import moment from 'moment'
 
 const StyledDateContainer = styled.div `
     width: 100%;
@@ -52,6 +51,11 @@ function formatAPIDate(date) {
 }
 
 
+function newFormatDate(date) {
+  return new Date(date).toLocaleDateString('fr-FR', { year: 'numeric', month: '2-digit', day: '2-digit' })
+}
+
+
 const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVote})  => {
   const [voted, setVote] = useState(false);
 
@@ -63,11 +67,12 @@ const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVot
     }
     setVote(!voted)
   }
+
   return (
       <StyledDateContainer>
         <StyledDateProposition color={voted ? '#fb8d47' : 'white'} textColor={voted ? 'white' : '#191919'}>
             <img src={img} alt="" />
-            <p> {formatAPIDate(startDate)} - {formatAPIDate(endDate)}</p>
+            <p> {newFormatDate(startDate)} - {newFormatDate(endDate)}</p>
         </StyledDateProposition>
         <StyledVoteAction color={voted ? '#fb8d47' : 'white'} onClick={() => onClickForVote(proposalId)}>
           <p>{subtile}</p>

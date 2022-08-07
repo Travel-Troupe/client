@@ -1,14 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import CalendarInputMUI from '../../components/CalendarInputMUI'
 import VotedDates from '../../components/VotedDates'
 import iconPlus from '../../assets/icons/add-button.png'
 import deleteButton from '../../assets/icons/deleteButton.png'
-import moment from 'moment'
 import {useParams, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import {proposeDate, voteForDate} from "../../services/Api";
-
 
 const StyledTitle = styled.h2`
   font-size: 0.875rem;
@@ -106,21 +104,17 @@ const SubmitButton = styled.button `
   margin-right: auto;
   display: block;
 `
+
 const StyledDatesChoosen = styled.div `
   display: flex;
   align-items: center;
 `
 
-function formatDate(date) {
-  return moment(date).format('DD/MM/YYYY');
+function newFormatDate(date) {
+    return date.toLocaleDateString('fr-FR', { year: 'numeric', month: '2-digit', day: '2-digit' })
 }
 
-function formatDateAPI(date) {
-  return moment(date).format('YYYY-MM-DD');
-}
-
-
-const TeamAvailability = ({...props}) => {
+const TeamAvailability = () => {
   const { teamId } = useParams()
   const { data, error, loading, refetch } = useFetch(`/team/${teamId}`)
   const navigateTo = useNavigate();
@@ -128,6 +122,7 @@ const TeamAvailability = ({...props}) => {
   const [selectedDayRange, setSelectedDayRange] = useState([null, null]);
   const [proposedDate, setproposedDate] = useState([]);
   const [listVotedDates, setlistVotedDates] = useState([]);
+
 
   const addVote = (proposalId) => {
     for (let i = 0; i < listVotedDates.length; i++) { 
@@ -160,16 +155,14 @@ const TeamAvailability = ({...props}) => {
   const onSubmit = async (e) => {
     if(proposedDate && proposedDate.length > 0){
       for (let i = 0; i < proposedDate.length; i++) { 
-        console.log("formatDateAPI(proposedDate[i][0]) => ", formatDateAPI(proposedDate[i][0]))
         e.preventDefault()
         const payload = {
           teamId,
-          startDate: formatDateAPI(proposedDate[i][0]),
-          endDate: formatDateAPI(proposedDate[i][1]),
+          startDate: newFormatDate(proposedDate[i][0]),
+          endDate: newFormatDate(proposedDate[i][1]),
         }
         let res = await proposeDate(payload)
         await refetch()
-        console.log("res => ", res)
       }
     }
     if(listVotedDates && listVotedDates.length > 0){
@@ -201,7 +194,7 @@ const TeamAvailability = ({...props}) => {
         <StyledDatesChoosen>
         <InputIconStyled key={index}>
             <TextStyled>
-                {formatDate(date[0])} - {formatDate(date[1])}
+                {newFormatDate(date[0])} - {newFormatDate(date[1])}
             </TextStyled>
             <InputIconIStyled className='gg-calendar-dates-light'></InputIconIStyled>
           </InputIconStyled>

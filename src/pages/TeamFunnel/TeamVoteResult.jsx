@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import {voteForDate} from "../../services/Api";
@@ -68,11 +68,21 @@ const StyledModal = styled.div`
   padding: 2rem 1rem;
   text-align: center;
 `
+function compare( a, b ) {
+  if ( a.votedBy < b.votedBy ){
+    return -1;
+  }
+  if ( a.votedBy > b.votedBy ){
+    return 1;
+  }
+  return 0;
+}
 
 const TeamVoteResult = () => {
   const { teamId } = useParams()
   const { data, error, loading, refetch } = useFetch(`/team/${teamId}`)
   const [finalVote, setFinalVote] = useState();
+  const [listProposals, setlistProposal] = useState([]);
   const [open, setVisibilty] = useState(false)
   const navigateTo = useNavigate();
 
@@ -89,7 +99,7 @@ const TeamVoteResult = () => {
         }
         await voteForDate(payload)
         await refetch()
-        navigateTo(`/teams`)
+        navigateTo(`/team-funnel/recap/${teamId}`)
     }
   }
 
@@ -101,11 +111,19 @@ const TeamVoteResult = () => {
     setFinalVote(proposalId);
   }
 
+  useEffect(() => {
+    if(data && data.datesProposals && data.datesProposals.length > 0) {
+      setlistProposal(data.datesProposals.sort(compare))
+    } else {
+      setlistProposal(data?.datesProposals)
+    }
+  }, [data])
+
   return (
     <>
       <StyledTitle> Sélectionner une date définitive : </StyledTitle>
-      {data && data.datesProposals && data.datesProposals.length > 0 && 
-      data.datesProposals.map((date, index) =>
+      {data && data.datesProposals && data.datesProposals.length > 0 && listProposals && 
+      listProposals.map((date, index) =>
           <VotedDates subtile={`${index+1}e`} startDate={date.startDate}  endDate={date.endDate} addVote={addVote} removeVote={removeVote} proposalId={date._id} />
       )}
       <SubmitButton onClick={handleModal}>VALIDER</SubmitButton>
