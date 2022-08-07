@@ -27,11 +27,15 @@ const useFetch = (url, options = {}, deps = [], immediate = true) => {
       });
 
       const res = await req.json();
+      if (!req.ok) {
+        throw new Error(res?.message || res?.error || 'an error occured')
+      }
       setState(res)
+      setError(null)
       setLoading(false)
       return res
     } catch(e) {
-      setError(e)
+      setError(e.message)
     } finally {
       setLoading(false)
     }

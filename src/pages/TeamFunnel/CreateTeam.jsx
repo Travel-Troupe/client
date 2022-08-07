@@ -54,6 +54,8 @@ const StyledTeam = styled.div`
     &:disabled {
       background-color: var(--color-grey);
       color: var(--color-white);
+      -webkit-text-fill-color: var(--color-white);
+      opacity: 1;
     }
   }
   `
@@ -101,7 +103,8 @@ const CreateTeam = () => {
       )}
       {!hasData && (
         <form onSubmit={onSubmit}>
-          <Input onChange={e => setState(e.target.value)} />
+          <Input error={error} onChange={e => setState(e.target.value)} />
+          {error && <p className="error">{error}</p>}
           <Button type="submit">Valider</Button>
         </form>
       )}

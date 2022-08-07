@@ -62,7 +62,8 @@ const JoinTeam = () => {
       )}
       {!hasData && (
         <form onSubmit={onSubmit}>
-          <Input onChange={e => setState(e.target.value)} />
+          <Input error={error} onChange={e => setState(e.target.value)} />
+          {error && <p className="error">{error}</p>}
           <Button type="submit">Rejoindre</Button>
         </form>
       )}

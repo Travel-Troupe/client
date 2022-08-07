@@ -1,12 +1,10 @@
-import React, { useContext, useState } from 'react'
-import AuthContext from '../store/contexts/AuthContext';
+import React, { useState } from 'react'
 import { register } from '../services/Api'
-import * as User from '../services/User'
 import Button from './Button'
 import Input from './Input'
 import Label from './label'
 import Logo from './Logo'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import cover from '../assets/cover-login.jpg'
 import logo from '../assets/logo-tt.png'
 import { Link, useNavigate } from 'react-router-dom';
@@ -27,30 +25,37 @@ const Form = styled.form`
   }
 `
 
-const StyledDiv = styled.div`
+export const StyledDiv = styled.div`
   margin-bottom: 20px;
   width: 70%;
+
+  ${({error}) => error && css`
+    padding: 8px;
+    color: white;
+    border-radius: 3px;
+    background-color: red;
+  `}
 `
 
 const RegisterForm = () => {
   const [username, setUsername] = useState('')
-  const [password, setPassword] = React.useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
 
-  const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
-
 
   const onUsernameChange = e => setUsername(e.target.value)
   const onPasswordChange = e => setPassword(e.target.value)
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
     if (username && password) {
       const res = await register({ username, password })
       if (res.name) {
         navigate('/?accountCreated=true')
       } else if (res.error) {
-
+        setError(res.error.toString())
       }
     }
   }
@@ -58,6 +63,7 @@ const RegisterForm = () => {
   return (
     <Form onSubmit={onSubmit}>
       <Logo src={logo} />
+      {error && <StyledDiv error={error}>{error}</StyledDiv>}
       <StyledDiv className="">
         <Label>Nom d'utilisateur</Label>
         <Input name="username" placeholder="Nom d'utilisateur" value={username} onChange={onUsernameChange} type="text"></Input>
@@ -67,6 +73,7 @@ const RegisterForm = () => {
         <Label>Mot de passe</Label>
         <Input name="password" placeholder="Mot de passe" value={password} onChange={onPasswordChange} type="password"></Input>
       </StyledDiv>
+
 
       <Link className='label' to="/">Se connecter</Link>
 
