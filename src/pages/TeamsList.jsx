@@ -25,9 +25,8 @@ const StyledContent = styled.div`
 
 const TeamsList = () => {
   const { data, error, loading } = useFetch('/team/all')
-
   const hasData = data && data.length
-  console.log("dataa=> ", data)
+
   return (
     <StyledContent>
       <AppHeader></AppHeader>

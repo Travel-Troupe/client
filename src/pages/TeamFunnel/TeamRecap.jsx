@@ -111,7 +111,6 @@ const TeamRecap = () => {
     navigateTo(`/team-funnel/validation/${teamId}`)
   }
 
-
   return (
     <StyledRecap>
       <StyledTSubitle> Vous et votre troupe allaient voyager le : </StyledTSubitle>

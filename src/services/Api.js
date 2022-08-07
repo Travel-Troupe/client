@@ -87,7 +87,6 @@ export const addStep = async ({ travelId, name, description = '', startDate, add
 
       return res
     }
-    console.log(teamId)
     throw new Error('please provide valid params')
   } catch(e) {
     console.error(e)
@@ -112,10 +111,8 @@ export const proposeDate = async ({ teamId, startDate, endDate}) => {
 
       return res
     }
-    console.log(teamId)
     throw new Error('please provide valid params')
   } catch(e) {
-    console.log("erreur coté api")
     console.error(e)
     return { error: e.message }
   }
@@ -138,10 +135,8 @@ export const voteForDate = async ({ teamId, proposalId}) => {
 
       return res
     }
-    console.log(teamId)
     throw new Error('please provide valid params')
   } catch(e) {
-    console.log("erreur coté api")
     console.error(e)
     return { error: e.message }
   }
@@ -164,10 +159,8 @@ export const validDate = async ({ teamId, startDate, endDate}) => {
 
       return res
     }
-    console.log(teamId)
     throw new Error('please provide valid params')
   } catch(e) {
-    console.log("erreur coté api")
     console.error(e)
     return { error: e.message }
   }
