@@ -5,6 +5,7 @@ import VotedDates from '../../components/VotedDates'
 import {useParams, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import {validDate} from "../../services/Api";
+import { StyledCalendarOption, StyledTSubitle } from './TeamAvailability';
 
 const StyledTitle = styled.h2`
   font-size: 0.875rem;

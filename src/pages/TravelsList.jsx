@@ -20,7 +20,7 @@ const TravelsList = () => {
   const { data, error, loading } = useFetch('/travel/all')
 
   const hasData = data && !!data.length
-  console.log(error)
+
   return (
     <StyledContainer>
         <AppHeader/>

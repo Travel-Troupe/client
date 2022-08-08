@@ -69,13 +69,7 @@ const StyledModal = styled.div`
   text-align: center;
 `
 function compare( a, b ) {
-  if ( a.votedBy < b.votedBy ){
-    return -1;
-  }
-  if ( a.votedBy > b.votedBy ){
-    return 1;
-  }
-  return 0;
+  return a.votedBy.length > b.votedBy.length
 }
 
 const TeamVoteResult = () => {
@@ -124,7 +118,14 @@ const TeamVoteResult = () => {
       <StyledTitle> Sélectionner une date définitive : </StyledTitle>
       {data && data.datesProposals && data.datesProposals.length > 0 && listProposals && 
       listProposals.map((date, index) =>
-          <VotedDates subtile={`${index+1}e`} startDate={date.startDate}  endDate={date.endDate} addVote={addVote} removeVote={removeVote} proposalId={date._id} />
+          <VotedDates
+            subtile={`${index+1}e`}
+            startDate={date.startDate}
+            endDate={date.endDate}
+            addVote={addVote}
+            removeVote={removeVote}
+            proposalId={date._id}
+          />
       )}
       <SubmitButton onClick={handleModal}>VALIDER</SubmitButton>
       <Modal

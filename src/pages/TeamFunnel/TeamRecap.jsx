@@ -4,6 +4,7 @@ import img from '../../assets/profil.jpg'
 import {useParams, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { getItem } from "../../utils/AppStorage";
+import getUserAvatar from '../../utils/getUserAvatar';
 
 const StyledTSubitle = styled.p`
   font-size: 0.675rem;
@@ -80,7 +81,6 @@ const TeamRecap = () => {
   const { teamId } = useParams()
   const { data, error, loading, refetch } = useFetch(`/team/${teamId}`)
   const [favoriteDate, setfavoriteDate] = useState({});
-  const [currentUserData, setCurrentUserData] = useState(null);
   const [isLeader, setIsLeader] = useState(false);
   const navigateTo = useNavigate();
 
@@ -90,18 +90,15 @@ const TeamRecap = () => {
         startDate: data.validatedStartDate,
         endDate: data.validatedEndDate,
       })
-    }else if(data && data?.datesProposals && data?.datesProposals.length > 0) {
+    } else if(data && data?.datesProposals && data?.datesProposals.length > 0) {
       let sortedList = data.datesProposals.sort(compare)
       setfavoriteDate({
         startDate: sortedList[0].startDate,
         endDate: sortedList[0].endDate,
       })
     }
-    (async () => {
-      const user = await getItem('user')
-      setCurrentUserData(user)
-    })()
-    if (currentUserData?.id == data?.owner){
+
+    if (getItem('user')?.id == data?.owner){
       setIsLeader(true)
     }
   }, [data])
@@ -113,16 +110,13 @@ const TeamRecap = () => {
 
   return (
     <StyledRecap>
-      <StyledTSubitle> Vous et votre troupe allaient voyager le : </StyledTSubitle>
+      <StyledTSubitle>Vous et votre troupe allez voyager le : </StyledTSubitle>
       <StyledMembersList> 
-                    {data && data?.teamComposition && data?.teamComposition.length > 0 && (
-                      data?.teamComposition.map( member => (
-                        <img src={member.image ? member.image : img} alt="" />
-
-                      ))
-                    )}
-                    <img src={img} alt="" />
-
+        {data && data?.teamComposition && data.teamComposition.length > 0 && (
+          data.teamComposition.map(member => (
+            <img src={member.name ? getUserAvatar(member) : img} alt="" />
+          ))
+        )}
       </StyledMembersList >
       <StyledTag>
         <p>{formatDate(favoriteDate.startDate)} - {formatDate(favoriteDate.endDate)}</p>

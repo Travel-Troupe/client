@@ -1,4 +1,4 @@
-export const setItem = async (key, value) => {
+export const setItem = (key, value) => {
   try {
     return window.localStorage.setItem(key, JSON.stringify(value))
   } catch(e) {
@@ -6,9 +6,9 @@ export const setItem = async (key, value) => {
   }
 }
 
-export const getItem = async (key) => {
+export const getItem = (key) => {
   try {
-    const value = await window.localStorage.getItem(key)
+    const value = window.localStorage.getItem(key)
     if(value !== null) {
       return JSON.parse(value)
     }

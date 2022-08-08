@@ -16,6 +16,10 @@ import CreateTeam from './pages/TeamFunnel/CreateTeam';
 import JoinTeam from './pages/TeamFunnel/JoinTeam';
 import TeamsList from './pages/TeamsList';
 import Travel from './pages/Travel';
+import Destination from "./pages/TravelFunnel/Destination";
+import Team from "./pages/TravelFunnel/Team";
+import Steps from "./pages/Steps";
+import Step from "./pages/Step";
 import TeamAvailability from './pages/TeamFunnel/TeamAvailability';
 import TeamVoteResult from './pages/TeamFunnel/TeamVoteResult';
 import TeamRecap from './pages/TeamFunnel/TeamRecap';
@@ -39,6 +43,7 @@ const AppWrapper = (props) => {
 
 const AppView = styled.div`
   height: calc(100vh - 67px);
+  padding: 100px 20px 20px 20px;
   overflow-y: scroll;
 `
 
@@ -49,7 +54,7 @@ const AppNavigation = () => {
         <AppView>
           <Routes>
             <Route path="/" element={<TravelsList />} />
-            <Route path="/teams" element={<TeamsList />} />
+            <Route path="/teams" element={<Team />} />
 
             {/* Team */}
             <Route path="team-funnel" element={<TeamFunnel />} />
@@ -63,6 +68,11 @@ const AppNavigation = () => {
 
             {/* Travel */}
             <Route path="travel/:travelId" element={<Travel />}/>
+            <Route path="travel/:travelId/steps" element={<Steps />}/>
+            <Route path="travel/:travelId/steps/:stepId" element={<Step />}/>
+            {/* Travel Funnel */}
+            <Route path="travel/create-travel" element={<Team />}/>
+            <Route path="travel/create-travel/destination/:teamId" element={<Destination />}/>
           </Routes>
         </AppView>
         <AppBottomBar />

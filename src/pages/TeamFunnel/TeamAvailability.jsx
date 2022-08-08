@@ -7,6 +7,8 @@ import deleteButton from '../../assets/icons/deleteButton.png'
 import {useParams, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import {proposeDate, voteForDate} from "../../services/Api";
+import uuidv4 from '../../utils/uuidv4'
+import formatDate from '../../utils/formatDate'
 
 const StyledTitle = styled.h2`
   font-size: 0.875rem;
@@ -17,16 +19,16 @@ const StyledDateSubtitle = styled.p`
   font-size: 0.675rem;
   color: var(--color-white);
   margin-top: .85rem;
-  margin-bottom: .2rem
+  margin-bottom: .2rem;
 `
 
-const StyledTSubitle = styled.p`
+export const StyledTSubitle = styled.p`
   font-size: 0.675rem;
   color: var(--color-white);
   margin-top: .5rem;
   `
 
-const StyledCalendarOption = styled.div `
+export const StyledCalendarOption = styled.div `
   display: flex;
   align-items: end;
 `
@@ -125,10 +127,8 @@ const TeamAvailability = () => {
 
 
   const addVote = (proposalId) => {
-    for (let i = 0; i < listVotedDates.length; i++) { 
-        if(listVotedDates[i] && listVotedDates[i].proposalId == proposalId) {
-            return
-        }
+    if (listVotedDates.includes(element => element.proposalId === proposalId)) {
+      return 
     }
     setlistVotedDates(listVotedDates => [...listVotedDates, proposalId]);
   }
@@ -140,28 +140,42 @@ const TeamAvailability = () => {
 
 
   const addDateProposition = () => {
-    if(!proposedDate.includes(selectedDayRange)){
-      setproposedDate(proposedDate => [...proposedDate, selectedDayRange]);
+    if (!selectedDayRange.filter(Boolean).length) {
+      return
+    }
+
+    const payload = {
+      id: uuidv4(),
+      startDate: selectedDayRange[0],
+      endDate: selectedDayRange[1]
+    }
+    
+    const rangeExists = proposedDate.find(({ startDate, endDate }) => startDate === payload.startDate && endDate === payload.endDate)
+
+    if(!rangeExists){
+      setproposedDate([...proposedDate, payload]);
+    } else {
+      window.alert('Cette proposition de date existe déjà')
     }
   }
   
-  const deleteDateProposition = (index) => {
-    let filtered = proposedDate.filter(function(_, i){
-      return i != index;
-  });
+  const deleteDateProposition = (id) => {
+    const filtered = proposedDate.filter(({ id: proposalId }) => id !== proposalId);
     setproposedDate(filtered)
   }
 
   const onSubmit = async (e) => {
-    if(proposedDate && proposedDate.length > 0){
+    if (proposedDate && proposedDate.length > 0){
       for (let i = 0; i < proposedDate.length; i++) { 
         e.preventDefault()
         const payload = {
           teamId,
-          startDate: newFormatDate(proposedDate[i][0]),
-          endDate: newFormatDate(proposedDate[i][1]),
+          startDate: (proposedDate[i].startDate.toString()),
+          endDate: (proposedDate[i].endDate.toString()),
         }
-        let res = await proposeDate(payload)
+
+        console.log(payload)
+        await proposeDate(payload)
         await refetch()
       }
     }
@@ -172,7 +186,7 @@ const TeamAvailability = () => {
           teamId,
           proposalId: listVotedDates[i]
         }
-        let res = await voteForDate(payload)
+        await voteForDate(payload)
         await refetch()
       }
     }
@@ -181,27 +195,33 @@ const TeamAvailability = () => {
 
   return (
     <div >
-      <StyledTitle> Sélectionner une date </StyledTitle>
-      <StyledTSubitle>   Sélectionner la période où vous serez disponible, les membres de votre troupe la verront aussi :</StyledTSubitle>
+      <StyledTitle>
+        Sélectionner une date
+      </StyledTitle>
+      <StyledTSubitle>
+        Sélectionner la période où vous serez disponible, les membres de votre troupe la verront aussi :
+      </StyledTSubitle>
       <StyledCalendarOption>
         <CalendarInputMUI selectedDayRange={selectedDayRange} setSelectedDayRange={setSelectedDayRange}/>
-        <StyledImg src={iconPlus} alt="ajouter une date" onClick={addDateProposition} />
+        <StyledImg src={iconPlus} alt="Ajouter une date" onClick={addDateProposition} />
       </StyledCalendarOption>
-      {proposedDate && proposedDate.length > 1 && 
-      proposedDate.map((date, index) =>
-        <>
-        <StyledDateSubtitle>Choix {index+1}</StyledDateSubtitle>
-        <StyledDatesChoosen>
-        <InputIconStyled key={index}>
-            <TextStyled>
-                {newFormatDate(date[0])} - {newFormatDate(date[1])}
-            </TextStyled>
-            <InputIconIStyled className='gg-calendar-dates-light'></InputIconIStyled>
-          </InputIconStyled>
-          <StyledDeleteImg src={deleteButton} alt="supprimer une date" onClick={() => deleteDateProposition(index)} />
-          </StyledDatesChoosen>
-        </>
-      )
+      {
+        proposedDate &&
+        !!proposedDate.length &&
+        proposedDate.map(({ startDate, endDate, id }, index) => (
+          <React.Fragment key={index}>
+            <StyledDateSubtitle>Choix {index + 1}</StyledDateSubtitle>
+            <StyledDatesChoosen>
+              <InputIconStyled>
+                <TextStyled>
+                  {formatDate(startDate)} - {formatDate(endDate)}
+                </TextStyled>
+                <InputIconIStyled className='gg-calendar-dates-light'></InputIconIStyled>
+              </InputIconStyled>
+              <StyledDeleteImg src={deleteButton} alt="supprimer une date" onClick={() => deleteDateProposition(id)} />
+            </StyledDatesChoosen>
+          </React.Fragment>
+        ))
       }
       <OrDivStyled>
         <LineStyled></LineStyled>
@@ -212,7 +232,14 @@ const TeamAvailability = () => {
       <StyledTSubitle>Voter pour une date parmi celles de votre troupe :</StyledTSubitle>
       {data && data.datesProposals && data.datesProposals.length > 0 && 
       data.datesProposals.map((date) =>
-          <VotedDates subtile="Voter" startDate={date.startDate}  endDate={date.endDate} addVote={addVote} removeVote={removeVote} proposalId={date._id} />
+        <VotedDates
+          subtile="Voter"
+          startDate={date.startDate}
+          endDate={date.endDate}
+          addVote={addVote}
+          removeVote={removeVote}
+          proposalId={date._id}
+        />
       )}
       <SubmitButton onClick={onSubmit}>SUIVANT</SubmitButton>
     </div>
