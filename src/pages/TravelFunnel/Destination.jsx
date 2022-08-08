@@ -6,10 +6,27 @@ import styled from "styled-components";
 import { useParams, useNavigate } from "react-router";
 import useFetch from "../../hooks/useFetch";
 import {createTravel} from "../../services/Api";
+import AppHeader from "../../components/AppHeader"
 
+const StyledForm = styled.form`
+.btn {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 120px;
+}`
+const StyledFormContainer = styled.div`
+  margin-top: 20px;
 
-const StyledForm = styled.form``
-const StyledFormContainer = styled.div``
+  .label {
+    color: var(--color-white);
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+`
 
 const Destination = () => {
   const { teamId } = useParams()
@@ -69,13 +86,15 @@ const Destination = () => {
   return (
     hasData && (
       <StyledForm onSubmit={onFormSubmit}>
+         <AppHeader/>
+
         <StyledFormContainer>
-          <span>Donnez un nom à votre voyage :</span>
+          <span className='label'>Donnez un nom à votre voyage :</span>
           <Input onChange={onNameChange}/>
-          <span>Choisissez une destination :</span>
+          <span className='label'>Choisissez une destination :</span>
           <MapboxAutocomplete locationTypes={['country']} onChange={onDestinationChange}/>
         </StyledFormContainer>
-        <Button type="submit">Valider</Button>
+        <Button className='btn' type="submit">Valider</Button>
       </StyledForm>
     )
   );

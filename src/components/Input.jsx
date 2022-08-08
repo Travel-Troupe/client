@@ -6,7 +6,7 @@ const Input = styled.input`
   width: 100%;
   background-color: var(--color-white);
   color: var(--color-black);
-  border: none;
+  border: ${({error}) => error ? 'solid red 1px' : 'none'};
   font-size: 14px;
   border-radius: 6px;
 
@@ -16,6 +16,11 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
+  }
+
+  & + .error {
+    color: red;
+    text-align: left;
   }
 `
 

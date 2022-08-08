@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import AppHeader from '../components/AppHeader'
 
 const StyledContainer = styled.div`
-  min-height: 100vh;
+  min-height: 100%;
 `
 
 const StyledContent = styled.div`
@@ -20,6 +20,7 @@ const TravelsList = () => {
   const { data, error, loading } = useFetch('/travel/all')
 
   const hasData = data && !!data.length
+  console.log(error)
   return (
     <StyledContainer>
         <AppHeader/>
