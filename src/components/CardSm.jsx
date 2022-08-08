@@ -20,15 +20,13 @@ position: relative;
     transform: scale(1.5);
   }
 
-  p {
+  p {
     position: absolute;
     font-size: 12px;
     bottom: 20px;
     font-weight: 500;
     color: black;
   }
-
-
 `
 
 const CardSm = (props) => {
