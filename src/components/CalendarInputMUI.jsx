@@ -60,21 +60,20 @@ function formatDate(date) {
   return `${date?.day}/${date?.month}/${date?.year}`
 }
 
+const RenderCustomInput = ({ ref, startProps, endProps }) => (
+  <InputIconStyled>
+      <Input
+      readOnly
+      ref={ref} 
+      placeholder="Choisissez la date idéale"
+      value={startProps}
+      />
+      <InputIconIStyled className='gg-calendar-dates'></InputIconIStyled>
+  </InputIconStyled>
+)
 
 const  CalendarInputMUI = ({selectedDayRange, setSelectedDayRange}) => {
   const [value, setValue] = useState([null, null]);
-
-  const RenderCustomInput = ({ ref, startProps, endProps }) => (
-    <InputIconStyled>
-        <Input
-        readOnly
-        ref={ref} 
-        placeholder="Choisissez la date idéale"
-        value={startProps}
-        />
-        <InputIconIStyled className='gg-calendar-dates'></InputIconIStyled>
-    </InputIconStyled>
-  )
 
   return (
       <LocalizationProvider
@@ -83,9 +82,7 @@ const  CalendarInputMUI = ({selectedDayRange, setSelectedDayRange}) => {
       >
         <MobileDateRangePicker
           value={selectedDayRange}
-          onChange={(newValue) => {
-            setSelectedDayRange(newValue);
-          }}
+          onChange={setSelectedDayRange}
           renderInput={(startProps, endProps) => (
             <InputIconStyled>
             <StyledBox>

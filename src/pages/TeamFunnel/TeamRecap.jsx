@@ -33,6 +33,7 @@ const StyledMembersList = styled.div`
     width: 28px;
     height: 28px;
     margin-right: .5rem;
+    border-radius: 13px;
   }
 `;
 
