@@ -4,7 +4,6 @@ import img from '../assets/profil.jpg'
 import whiteStar from '../assets/icons/white-star.png'
 import OrangStar from '../assets/icons/star-voted.png'
 import formatDate from '../utils/formatDate';
-import getUserAvatar from '../utils/getUserAvatar';
 
 const StyledDateContainer = styled.div `
     width: 100%;
@@ -24,7 +23,6 @@ const StyledDateProposition = styled.div`
   img {
     margin-left: 5px;
     max-height: 45px;
-    border-radius: 12px;
   }
   p{
     color: ${props => props.textColor || '#fff'};
@@ -64,7 +62,7 @@ const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVot
   return (
       <StyledDateContainer>
         <StyledDateProposition color={voted ? '#fb8d47' : 'white'} textColor={voted ? 'white' : '#191919'}>
-            <img src={member.name ? getUserAvatar(member) : img} alt="" />
+            <img src={img} alt="" />
             <p> {formatDate(startDate)} - {formatDate(endDate)}</p>
         </StyledDateProposition>
         <StyledVoteAction color={voted ? '#fb8d47' : 'white'} onClick={() => onClickForVote(proposalId)}>
