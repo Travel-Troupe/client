@@ -84,6 +84,11 @@ const StyledDateItem = styled.div`
   }
 `
 
+function formatDateApp(date) {
+  return moment(date).format('YYYY-MM-DD');
+}
+
+
 const Steps = () => {
   const { travelId } = useParams()
   const { data, error, loading, refetch } = useFetch(`/travel/${travelId}`)

@@ -16,11 +16,14 @@ import CreateTeam from './pages/TeamFunnel/CreateTeam';
 import JoinTeam from './pages/TeamFunnel/JoinTeam';
 import TeamsList from './pages/TeamsList';
 import Travel from './pages/Travel';
-import MapboxAutocomplete from './components/MapboxAutocomplete';
 import Destination from "./pages/TravelFunnel/Destination";
 import Team from "./pages/TravelFunnel/Team";
 import Steps from "./pages/Steps";
 import Step from "./pages/Step";
+import TeamAvailability from './pages/TeamFunnel/TeamAvailability';
+import TeamVoteResult from './pages/TeamFunnel/TeamVoteResult';
+import TeamRecap from './pages/TeamFunnel/TeamRecap';
+import TeamLeadInterface from './pages/TeamFunnel/TeamLeadInterface';
 
 const StyledWrapper = styled.div`
   background-size: cover;
@@ -34,7 +37,7 @@ const AppWrapper = (props) => {
   const path = Object.keys(appBackground)
     .find(pattern => matchPath(pattern, location.pathname))
   const bg = path ? appBackground[path] : indexBg
-
+  
   return <StyledWrapper bg={bg} {...props} />
 }
 
@@ -51,12 +54,17 @@ const AppNavigation = () => {
         <AppView>
           <Routes>
             <Route path="/" element={<TravelsList />} />
-            <Route path="/teams" element={<TeamsList />} />
+            <Route path="/teams" element={<Team />} />
 
             {/* Team */}
             <Route path="team-funnel" element={<TeamFunnel />} />
             <Route path="team-funnel/create" element={<CreateTeam />} />
             <Route path="team-funnel/join" element={<JoinTeam />} />
+            <Route path="team-funnel/availability/:teamId" element={<TeamAvailability />} />
+            <Route path="team-funnel/votes/:teamId" element={<TeamVoteResult />} />
+            <Route path="team-funnel/recap/:teamId" element={<TeamRecap />} />
+            <Route path="team-funnel/validation/:teamId" element={<TeamLeadInterface />} />
+
 
             {/* Travel */}
             <Route path="travel/:travelId" element={<Travel />}/>

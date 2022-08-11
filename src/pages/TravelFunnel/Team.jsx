@@ -4,6 +4,7 @@ import styled from "styled-components";
 import formatDate from "../../utils/formatDate";
 import {Link} from "react-router-dom";
 import AppHeader from '../../components/AppHeader'
+import Button from '../../components/Button';
 
 const StyledItem = styled.li`
   list-style-type: none;
@@ -44,6 +45,11 @@ const StyledValidatedDate = styled.div`
   }
 `
 
+const StyledButton = styled(Button)`
+  display: inline-block;
+  margin: 0 auto;
+`
+
 const Team = () => {
   const { data, error, loading } = useFetch('/team/all')
   const hasData = data && data.length
@@ -63,8 +69,8 @@ const Team = () => {
                     {formatDate(validatedStartDate)} - {formatDate(validatedEndDate)}
                   </StyledValidatedDate>
                 ) : (
-                  <StyledValidatedDate>
-                    <i class="gg-calendar-two"></i>
+                  <StyledValidatedDate as={Link} to={`/team-funnel/availability/${id}`}>
+                    <i className="gg-calendar-two"></i>
                     <span>À définir</span>
                   </StyledValidatedDate>
                 )
@@ -73,6 +79,7 @@ const Team = () => {
           })}
         </ul>
       )}
+      <StyledButton as={Link} to={'/team-funnel'} className='btn'>Trouver une troupe</StyledButton>
     </div>
   );
 };

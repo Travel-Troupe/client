@@ -94,7 +94,7 @@ const CreateTeam = () => {
         <div className='content'>
           <Input ref={input} value={data.slug} disabled />
           <button className='share'>
-            <i class="gg-share"></i>
+            <i className="gg-share"></i>
             <span onClick={copyToClipBoard}>Partager</span>
           </button>
           <br></br>

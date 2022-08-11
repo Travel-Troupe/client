@@ -2,12 +2,19 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
+  "proxy": "https://travel-troupe-api.herokuapp.com",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.9.3",
+    "@mui/x-date-pickers": "^5.0.0-beta.3",
+    "@mui/x-date-pickers-pro": "^5.0.0-beta.3",
+    "date-fns": "^2.29.1",
     "jwt-decode": "^3.1.2",
     "lodash.debounce": "^4.0.8",
     "mapbox-gl": "^2.9.2",

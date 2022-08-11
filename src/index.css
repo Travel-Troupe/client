@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/
+/* http://meyerweb.com/eric/tools/css/reset/ 
 v2.0 | 20110126
 License: none (public domain)
 */
@@ -12,6 +12,7 @@ License: none (public domain)
 }
 :root {
 	--color-green: #79BFA4;
+	--color-orange: #FF8C42;
 	--color-orange: #FF8C42;
 	--color-grey-dark: #747C92;
 	--color-grey: #BCBCBC;
@@ -30,19 +31,19 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-
+	
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
+article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -151,6 +152,120 @@ table {
 .gg-chevron-down {
 	box-sizing: border-box;
 	position: relative;
+	bottom: 2px
+}
+
+.gg-file {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    transform: scale(var(--ggs,1));
+    width: 14px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-right: 0;
+    border-top: 0;
+    box-shadow: 0 0 0 2px;
+    border-radius: 1px;
+    border-top-right-radius: 4px;
+    overflow: hidden
+}
+.gg-file::after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    right: -1px;
+    top: -1px
+}
+
+.map.icon {
+	box-sizing: content-box;
+	color: #000;
+	position: absolute;
+	margin-left: 8px;
+	margin-top: 4px;
+	width: 4px;
+	height: 10px;
+	border-radius: 1px;
+	border: solid 1px currentColor;
+	-webkit-transform: skewY(20deg );
+			transform: skewY(20deg) scale(2);
+}
+
+.map.icon {
+	box-sizing: content-box;
+	color: #000;
+	position: absolute;
+	margin-left: 8px;
+	margin-top: 4px;
+	width: 4px;
+	height: 10px;
+	border-radius: 1px;
+	border: solid 1px currentColor;
+	-webkit-transform: skewY(20deg);
+	transform: skewY(20deg) scale(2)
+}
+
+.map.icon:before {
+	content: "";
+	position: absolute;
+	left: -6px;
+	top: 1px;
+	width: 4px;
+	height: 10px;
+	border-radius: 1px;
+	border: solid 1px currentColor;
+	-webkit-transform: skewY(-40deg);
+	transform: skewY(-40deg)
+}
+
+.map.icon:after {
+	content: "";
+	position: absolute;
+	left: 4px;
+	top: -3px;
+	width: 4px;
+	height: 10px;
+	border-radius: 1px;
+	border: solid 1px currentColor;
+	-webkit-transform: skewY(-40deg);
+	transform: skewY(-40deg)
+}
+
+.gg-euro {
+	position: relative;
+	display: block;
+	transform: scale(var(--ggs,1));
+	width: 14px;
+	height: 14px;
+	border: 2px solid;
+	box-sizing: border-box;
+	border-radius: 100px;
+	border-right-color: transparent
+}
+
+.gg-euro:after {
+	content: "";
+	display: block;
+	box-sizing: border-box;
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	transform: skew(-20deg);
+	left: -4px;
+	top: 3px
+}
+
+.gg-chevron-down {
+	box-sizing: border-box;
+	position: relative;
 	display: block;
 	transform: scale(var(--ggs,1));
 	width: 22px;
@@ -198,97 +313,46 @@ table {
 	bottom: 2px
 }
 
-.gg-file {
-    box-sizing: border-box;
-    position: relative;
-    display: block;
-    transform: scale(var(--ggs,1));
-    width: 14px;
-    height: 16px;
-    border: 2px solid transparent;
-    border-right: 0;
-    border-top: 0;
-    box-shadow: 0 0 0 2px;
-    border-radius: 1px;
-    border-top-right-radius: 4px;
-    overflow: hidden
-}
-.gg-file::after {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border-left: 2px solid;
-    border-bottom: 2px solid;
-    right: -1px;
-    top: -1px
-}
-
-.map.icon {
-	box-sizing: content-box;
-	color: #000;
+.gg-calendar-dates {
+	box-sizing: border-box;
+	position: relative;
+	display: block;
+	transform: scale(var(--ggs,1));
+	width: 18px;
+	height: 18px;
+	border: 2px solid;
+	border-radius: 3px
+   }
+   
+   .gg-calendar-dates::after,
+   .gg-calendar-dates::before {
+	content: "";
+	display: block;
+	box-sizing: border-box;
 	position: absolute;
-	margin-left: 8px;
-	margin-top: 4px;
-	width: 4px;
-	height: 10px;
-	border-radius: 1px;
-	border: solid 1px currentColor;
-	-webkit-transform: skewY(20deg );
-			transform: skewY(20deg) scale(2);
-  }
+	border-radius: 3px;
+	height: 2px;
+	left: 2px
+   }
+   
+   .gg-calendar-dates::before {
+	background: currentColor;
+	width: 2px;
+	box-shadow:
+	4px 0 0,8px 0 0,0 4px 0,
+	4px 4px 0,8px 4px 0;
+	top: 6px
+   }
+   
+   .gg-calendar-dates::after {
+	width: 10px;
+	top: -4px;
+	box-shadow: 0 6px 0 0
+   } 
 
-  .map.icon:before {
-	content: '';
-	position: absolute;
-	left: -6px;
-	top: 1px;
-	width: 4px;
-	height: 10px;
-	border-radius: 1px;
-	border: solid 1px currentColor;
-	-webkit-transform: skewY(-40deg);
-			transform: skewY(-40deg);
-  }
-
-  .map.icon:after {
-	content: '';
-	position: absolute;
-	left: 4px;
-	top: -3px;
-	width: 4px;
-	height: 10px;
-	border-radius: 1px;
-	border: solid 1px currentColor;
-	-webkit-transform: skewY(-40deg);
-			transform: skewY(-40deg);
-  }
-
-  .gg-euro {
-    position: relative;
-    display: block;
-    transform: scale(var(--ggs,1));
-    width: 14px;
-    height: 14px;
-    border: 2px solid;
-    box-sizing: border-box;
-    border-radius: 100px;
-    border-right-color: transparent
-}
-.gg-euro::after {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    width: 9px;
-    height: 5px;
-    border-top: 2px solid;
-    border-bottom: 2px solid;
-    transform: skewX(-20deg);
-    left: -4px;
-    top: 3px
+   
+   .datepicker {
+    width: 80%;
 }
 
 .gg-layout-list {
@@ -404,3 +468,45 @@ table {
     bottom: 0;
     transform: rotate(35deg)
 }
+
+.gg-calendar-dates-light {
+	box-sizing: border-box;
+	position: relative;
+	display: block;
+	transform: scale(var(--ggs,1));
+	width: 18px;
+	height: 18px;
+	border: 2px solid #BCBCBC;
+	border-radius: 3px
+   }
+   
+   .gg-calendar-dates-light::after,
+   .gg-calendar-dates-light::before {
+	content: "";
+	display: block;
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 3px;
+	height: 2px;
+	left: 2px;
+	color: #BCBCBC;
+   }
+   
+   .gg-calendar-dates-light::before {
+	background: currentColor;
+	width: 2px;
+	box-shadow:
+	4px 0 0,8px 0 0,0 4px 0,
+	4px 4px 0,8px 4px 0;
+	top: 6px
+   }
+   
+   .gg-calendar-dates-light::after {
+	width: 10px;
+	top: -4px;
+	box-shadow: 0 6px 0 0
+   } 
+
+   .MuiDialogContent-root>div>div{
+	color: transparent !important;
+   }

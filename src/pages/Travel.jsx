@@ -8,6 +8,7 @@ import CardSm from '../components/CardSm'
 import ImgProfil from '../assets/profil.jpg'
 import Badge from '../components/Badge'
 import formatDate from "../utils/formatDate";
+import getUserAvatar from '../utils/getUserAvatar'
 
 const StyledContainer = styled.div`
   min-height: 100%;
@@ -92,9 +93,9 @@ const Travel = (props) => {
                   <p className='location'>{data.location.place_name}</p>
                   <div className='card-bottom'>
                     <div className='team'>
-                    { data.team && data.team.teamComposition.map((travel, i) => (
+                    { data.team && data.team.teamComposition.map((user, i) => (
                         <div  className='profil' key={i}>
-                          <Profil small src={ImgProfil} alt=""></Profil>
+                          <Profil small src={getUserAvatar(user)} alt=""></Profil>
                         </div>
                     ))}
                     </div>

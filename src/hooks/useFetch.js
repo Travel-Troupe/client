@@ -21,7 +21,7 @@ const useFetch = (url, options = {}, deps = [], immediate = true) => {
         method: 'GET',
         headers: new Headers(token ? {
           'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         } : {}),
         ...options
       });
