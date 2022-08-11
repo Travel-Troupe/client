@@ -111,7 +111,7 @@ const TeamRecap = () => {
 
   return (
     <StyledRecap>
-      <StyledTSubitle>Vous et votre troupe allez voyager le : </StyledTSubitle>
+      <StyledTSubitle>La date favorite de votre troupe est le : </StyledTSubitle>
       <StyledMembersList> 
         {data && data?.teamComposition && data.teamComposition.length > 0 && (
           data.teamComposition.map(member => (
@@ -124,7 +124,7 @@ const TeamRecap = () => {
       </StyledTag>
       {
         isLeader && (
-          <StyledValidedButton onClick={onSubmit}>MODIFER LA DATE</StyledValidedButton>
+          <StyledValidedButton onClick={onSubmit}>VALIDER LA DATE</StyledValidedButton>
         )
       }
     </StyledRecap>
