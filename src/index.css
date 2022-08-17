@@ -511,6 +511,6 @@ table {
 	color: transparent !important;
    }
 
-   .css-1v994a0 {
+   div[aria-live="polite"] {
 	color:black;
-   }
+  }
