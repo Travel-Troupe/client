@@ -237,6 +237,8 @@ const TeamAvailability = () => {
           addVote={addVote}
           removeVote={removeVote}
           proposalId={date._id}
+          teamComposition={data.teamComposition}
+          proposedBy={date.proposedBy}
         />
       )}
       <SubmitButton onClick={onSubmit}>SUIVANT</SubmitButton>
