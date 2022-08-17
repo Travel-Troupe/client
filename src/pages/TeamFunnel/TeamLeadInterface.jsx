@@ -114,7 +114,7 @@ const TeamLeadInterface = () => {
       <StyledTSubitle>Valider une date déjà proposée :</StyledTSubitle>
       {data && data.datesProposals && data.datesProposals.length > 0 && 
       data.datesProposals.map((date) =>
-          <VotedDates subtile="Voter" startDate={date.startDate}  endDate={date.endDate} addVote={addVote} removeVote={removeVote} proposalId={date._id} />
+          <VotedDates subtile="Voter" startDate={date.startDate}  endDate={date.endDate} addVote={addVote} removeVote={removeVote} proposalId={date._id} teamComposition={data.teamComposition} proposedBy={date.proposedBy}/>
       )}
       <SubmitButton onClick={onSubmit}>VALIDATION</SubmitButton>
     </div>

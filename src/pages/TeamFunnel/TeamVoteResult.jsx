@@ -125,6 +125,8 @@ const TeamVoteResult = () => {
             addVote={addVote}
             removeVote={removeVote}
             proposalId={date._id}
+            teamComposition={data.teamComposition}
+            proposedBy={date.proposedBy}
           />
       )}
       <SubmitButton onClick={handleModal}>VALIDER</SubmitButton>
