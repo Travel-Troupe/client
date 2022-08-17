@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import styled from 'styled-components';
 import img from '../assets/profil.jpg'
 import whiteStar from '../assets/icons/white-star.png'
 import OrangStar from '../assets/icons/star-voted.png'
 import formatDate from '../utils/formatDate';
+import getUserAvatar from '../utils/getUserAvatar';
 
 const StyledDateContainer = styled.div `
     width: 100%;
@@ -47,8 +48,21 @@ const StyledVoteAction = styled.div `
     }
 `
 
-const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVote})  => {
+const StyledRoundedImage = styled.img `
+    border-radius: 30px;
+`
+
+const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVote, teamComposition, proposedBy})  => {
   const [voted, setVote] = useState(false);
+  const [username, setUsername] = useState(
+    () => {
+      if(teamComposition && teamComposition.length > 0 && proposedBy){
+          const user = teamComposition.find(member => member._id = proposedBy);
+          return user?.name
+      } else {
+        return ''
+      }
+    }) 
 
   const onClickForVote = (proposalId) => {
     if (!voted) {
@@ -62,7 +76,7 @@ const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVot
   return (
       <StyledDateContainer>
         <StyledDateProposition color={voted ? '#fb8d47' : 'white'} textColor={voted ? 'white' : '#191919'}>
-            <img src={img} alt="" />
+            <StyledRoundedImage src={username ? getUserAvatar(username) : img} alt="" />
             <p> {formatDate(startDate)} - {formatDate(endDate)}</p>
         </StyledDateProposition>
         <StyledVoteAction color={voted ? '#fb8d47' : 'white'} onClick={() => onClickForVote(proposalId)}>

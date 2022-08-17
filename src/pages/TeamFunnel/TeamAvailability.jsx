@@ -228,6 +228,7 @@ const TeamAvailability = () => {
       </OrDivStyled>
       <StyledTitle> Disponiblité de votre troupe </StyledTitle>
       <StyledTSubitle>Voter pour une date parmi celles de votre troupe :</StyledTSubitle>
+      {console.log(data)}
       {data && data.datesProposals && data.datesProposals.length > 0 && 
       data.datesProposals.map((date) =>
         <VotedDates
@@ -237,6 +238,8 @@ const TeamAvailability = () => {
           addVote={addVote}
           removeVote={removeVote}
           proposalId={date._id}
+          teamComposition={data.teamComposition}
+          proposedBy={date.proposedBy}
         />
       )}
       <SubmitButton onClick={onSubmit}>SUIVANT</SubmitButton>
