@@ -510,3 +510,7 @@ table {
    .MuiDialogContent-root>div>div{
 	color: transparent !important;
    }
+
+   div[aria-live="polite"] {
+	color:black;
+  }

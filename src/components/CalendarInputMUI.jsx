@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
 import { MobileDateRangePicker } from '@mui/x-date-pickers-pro/MobileDateRangePicker';
+import frLocale from 'date-fns/locale/fr';
 
 const Input = styled.input`
   font-size: 0.875rem;
@@ -16,6 +17,7 @@ const Input = styled.input`
     color: var(---color-grey-light);
   }
   outline: none;
+  width: 9rem;
 `;
 
 const StyledRightInput = styled.input`
@@ -56,31 +58,15 @@ const StyledBox = styled.div`
   border-radius: 10px;
 `
 
-function formatDate(date) {
-  return `${date?.day}/${date?.month}/${date?.year}`
-}
-
-const RenderCustomInput = ({ ref, startProps, endProps }) => (
-  <InputIconStyled>
-      <Input
-      readOnly
-      ref={ref} 
-      placeholder="Choisissez la date idéale"
-      value={startProps}
-      />
-      <InputIconIStyled className='gg-calendar-dates'></InputIconIStyled>
-  </InputIconStyled>
-)
-
 const  CalendarInputMUI = ({selectedDayRange, setSelectedDayRange}) => {
-  const [value, setValue] = useState([null, null]);
-
   return (
       <LocalizationProvider
         dateAdapter={AdapterDateFns}
-        localeText={{ start: 'Mobile start', end: 'Mobile end' }}
+        localeText={{ start: 'Date du début', end: 'Date de fin' }}
+        adapterLocale={frLocale}
       >
         <MobileDateRangePicker
+          toolbarTitle="Choisir une date"
           value={selectedDayRange}
           onChange={setSelectedDayRange}
           renderInput={(startProps, endProps) => (

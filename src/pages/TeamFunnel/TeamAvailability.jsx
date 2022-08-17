@@ -31,11 +31,12 @@ export const StyledTSubitle = styled.p`
 export const StyledCalendarOption = styled.div `
   display: flex;
   align-items: end;
+  justify-content: space-between;
 `
 
 const StyledImg = styled.img `
   padding-bottom: 6px;
-  padding-left: 0.5rem;
+  padding-right: 10px;
 `
 
 const StyledDeleteImg = styled.img `
@@ -110,11 +111,8 @@ const SubmitButton = styled.button `
 const StyledDatesChoosen = styled.div `
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `
-
-function newFormatDate(date) {
-    return date.toLocaleDateString('fr-FR', { year: 'numeric', month: '2-digit', day: '2-digit' })
-}
 
 const TeamAvailability = () => {
   const { teamId } = useParams()
