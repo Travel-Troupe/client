@@ -54,16 +54,8 @@ const StyledRoundedImage = styled.img `
 
 const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVote, teamComposition, proposedBy})  => {
   const [voted, setVote] = useState(false);
-  const [username, setUsername] = useState(
-    () => {
-      if(teamComposition && teamComposition.length > 0 && proposedBy){
-          const user = teamComposition.find(member => member._id = proposedBy);
-          return user?.name
-      } else {
-        return ''
-      }
-    }) 
-
+  const username = teamComposition.find(member => member._id = proposedBy)?.name
+  
   const onClickForVote = (proposalId) => {
     if (!voted) {
       addVote(proposalId)

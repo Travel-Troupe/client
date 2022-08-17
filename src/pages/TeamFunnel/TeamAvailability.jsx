@@ -228,7 +228,6 @@ const TeamAvailability = () => {
       </OrDivStyled>
       <StyledTitle> Disponiblité de votre troupe </StyledTitle>
       <StyledTSubitle>Voter pour une date parmi celles de votre troupe :</StyledTSubitle>
-      {console.log(data)}
       {data && data.datesProposals && data.datesProposals.length > 0 && 
       data.datesProposals.map((date) =>
         <VotedDates
