@@ -29,6 +29,12 @@ export default defineConfig({
       injectRegister: 'auto',
       devOptions: {
         enabled: true
+      },
+      manifest: {
+        name: 'Travel troupe',
+        short_name: 'Travel Troupe',
+        description: 'Travel in Troupe',
+        theme_color: '#fff'
       }
     })
   ]

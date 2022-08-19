@@ -54,7 +54,7 @@ const StyledRoundedImage = styled.img `
 
 const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVote, teamComposition, proposedBy})  => {
   const [voted, setVote] = useState(false);
-  const username = teamComposition?.find(member => member._id = proposedBy)?.name
+  const name = teamComposition?.find(member => member._id === proposedBy)?.name
 
   const onClickForVote = (proposalId) => {
     if (!voted) {
@@ -68,7 +68,7 @@ const VotedDates = ({subtile, startDate, endDate, proposalId, addVote, removeVot
   return (
       <StyledDateContainer>
         <StyledDateProposition color={voted ? '#fb8d47' : 'white'} textColor={voted ? 'white' : '#191919'}>
-            <StyledRoundedImage src={username ? getUserAvatar(username) : img} alt="" />
+            <StyledRoundedImage src={name ? getUserAvatar({ name }) : img} alt="" />
             <p> {formatDate(startDate)} - {formatDate(endDate)}</p>
         </StyledDateProposition>
         <StyledVoteAction color={voted ? '#fb8d47' : 'white'} onClick={() => onClickForVote(proposalId)}>

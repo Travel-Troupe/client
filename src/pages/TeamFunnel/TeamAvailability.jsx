@@ -191,6 +191,8 @@ const TeamAvailability = () => {
     navigateTo(`/team-funnel/votes/${teamId}`)
   }
 
+  console.log(data)
+
   return (
     <div >
       <StyledTitle>
