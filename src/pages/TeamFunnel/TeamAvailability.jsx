@@ -9,6 +9,7 @@ import useFetch from "../../hooks/useFetch";
 import {proposeDate, voteForDate} from "../../services/Api";
 import uuidv4 from '../../utils/uuidv4'
 import formatDate from '../../utils/formatDate'
+import AppHeader from '../../components/AppHeader'
 
 const StyledTitle = styled.h2`
   font-size: 0.875rem;
@@ -191,16 +192,10 @@ const TeamAvailability = () => {
     navigateTo(`/team-funnel/votes/${teamId}`)
   }
 
-  console.log(data)
 
   return (
     <div >
-      <StyledTitle>
-        Sélectionner une date
-      </StyledTitle>
-      <StyledTSubitle>
-        Sélectionner la période où vous serez disponible, les membres de votre troupe la verront aussi :
-      </StyledTSubitle>
+      <AppHeader title="Sélectionner une date" subtitle="Sélectionner la période où vous serez disponible, les membres de votre troupe la verront aussi :"/>
       <StyledCalendarOption>
         <CalendarInputMUI selectedDayRange={selectedDayRange} setSelectedDayRange={setSelectedDayRange}/>
         <StyledImg src={iconPlus} alt="Ajouter une date" onClick={addDateProposition} />

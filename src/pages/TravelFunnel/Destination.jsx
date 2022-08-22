@@ -86,8 +86,7 @@ const Destination = () => {
   return (
     hasData && (
       <StyledForm onSubmit={onFormSubmit}>
-         <AppHeader/>
-
+        <AppHeader title="Mon voyage" subtitle=""/>
         <StyledFormContainer>
           <span className='label'>Donnez un nom à votre voyage :</span>
           <Input onChange={onNameChange}/>

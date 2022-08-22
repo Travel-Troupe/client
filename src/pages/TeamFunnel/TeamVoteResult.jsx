@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import VotedDates from '../../components/VotedDates'
 import {useNavigate } from "react-router-dom";
 import Modal from '@mui/material/Modal';
+import AppHeader from '../../components/AppHeader';
 
 const SubmitButton = styled.button `
   background-color: var(--color-green);
@@ -64,7 +65,6 @@ const StyledModal = styled.div`
   width: 80%;
   background-color: var(--color-white);
   border: '2px solid #000';
-  boxShadow: 24;
   padding: 2rem 1rem;
   text-align: center;
 `
@@ -115,7 +115,7 @@ const TeamVoteResult = () => {
 
   return (
     <>
-      <StyledTitle> Sélectionner une date définitive : </StyledTitle>
+      <AppHeader title="Résultats" subtitle="Sélectionner une date définitive :" />
       {data && data.datesProposals && data.datesProposals.length > 0 && listProposals && 
       listProposals.map((date, index) =>
           <VotedDates

@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
 const StyledCard = styled.div`
   position: relative;
   height: 100%;
-  margin: 8px; 
+  margin: 16px 0px 8px; 
   aspect-ratio: 5/3;
 
   .content {
@@ -84,31 +84,33 @@ const Travel = (props) => {
   const { data, error, loading } = useFetch(`/travel/${travelId}`)
   return (
     <StyledContainer>
-      <AppHeader/>
-          {
-            data && data.name && (
-              <StyledCard>
-                <div className='content'>
-                  <h2 className='name'>{data.name}</h2>
-                  <p className='location'>{data.location.place_name}</p>
-                  <div className='card-bottom'>
-                    <div className='team'>
-                    { data.team && data.team.teamComposition.map((user, i) => (
-                        <div  className='profil' key={i}>
-                          <Profil small src={getUserAvatar(user)} alt=""></Profil>
-                        </div>
-                    ))}
+    {
+      data && data.name && (
+        <>
+          <AppHeader title={data.name} subtitle={''}/>
+          <StyledCard>
+            <div className='content'>
+              <h2 className='name'>{data.name}</h2>
+              <p className='location'>{data.location.place_name}</p>
+              <div className='card-bottom'>
+                <div className='team'>
+                { data.team && data.team.teamComposition.map((user, i) => (
+                    <div  className='profil' key={i}>
+                      <Profil small src={getUserAvatar(user)} alt=""></Profil>
                     </div>
-                    <div className='badge'>
-                      <Badge>Définir un budjet</Badge>
-                      <Badge grey>{formatDate(new Date(data.startDate))}</Badge>
-                    </div>
-                  </div>
+                ))}
                 </div>
-                <img className='background' src={data.picture} />
-                </StyledCard>
-            )
-          }
+                <div className='badge'>
+                  <Badge>Définir un budjet</Badge>
+                  <Badge grey>{formatDate(new Date(data.startDate))}</Badge>
+                </div>
+              </div>
+            </div>
+            <img className='background' src={data.picture} />
+          </StyledCard>
+        </>
+        )
+    }
       <Flex>
           <CardSm icon={'gg-layout-list'}>Tâches</CardSm>
           <CardSm icon={'gg-file'}>Documents</CardSm>

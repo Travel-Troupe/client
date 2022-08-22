@@ -4,7 +4,11 @@ import useFetch from '../hooks/useFetch'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import AppHeader from '../components/AppHeader'
+import { StyledCenteredButton } from './TravelFunnel/Team'
 
+const StyledButton = styled(StyledCenteredButton)`
+  margin-top: 8px;
+`
 const StyledContainer = styled.div`
   min-height: 100%;
 `
@@ -21,9 +25,11 @@ const TravelsList = () => {
 
   const hasData = data && !!data.length
 
+  const buttonText = hasData ? 'Ajouter un voyage' : 'Se lancer'
+
   return (
     <StyledContainer>
-        <AppHeader/>
+      <AppHeader title="Mes voyages" subtitle="Liste des voyages en cours et passés :"/>
       <StyledContent>
         {hasData && data.map((travel, i) => (
           <Card
@@ -37,6 +43,7 @@ const TravelsList = () => {
         {!hasData && !loading && <p>Vous n'avez aucun voyages</p>}
         {error && <p>{'Une erreur est survenue =('}</p>}
         </StyledContent>
+        <StyledButton as={Link} to="/teams">{buttonText}</StyledButton>
     </StyledContainer>
   )
 }

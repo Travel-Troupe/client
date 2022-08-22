@@ -29,8 +29,7 @@ const TeamsList = () => {
 
   return (
     <StyledContent>
-      <AppHeader></AppHeader>
-      <StyledTitle>Liste de toutes vos troupes: </StyledTitle>
+      <AppHeader title="Mes troupes" subtitle="Liste de toutes vos troupes: "></AppHeader>
       {hasData && (
         data.map(({name, teamComposition, validatedStartDate, _id: teamId}) => (
           <Link to={validatedStartDate? '' : `/team-funnel/availability/${teamId}`} style={{ textDecoration: 'none' }}>

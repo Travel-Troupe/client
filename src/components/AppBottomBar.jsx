@@ -7,6 +7,7 @@ import iconParams from '../assets/icons/settings.png'
 
 const StyledContainer = styled.div`
   height: 67px;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;

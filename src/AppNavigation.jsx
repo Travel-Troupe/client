@@ -24,8 +24,10 @@ import TeamAvailability from './pages/TeamFunnel/TeamAvailability';
 import TeamVoteResult from './pages/TeamFunnel/TeamVoteResult';
 import TeamRecap from './pages/TeamFunnel/TeamRecap';
 import TeamLeadInterface from './pages/TeamFunnel/TeamLeadInterface';
+import Settings from './pages/Settings';
 
 const StyledWrapper = styled.div`
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -42,8 +44,8 @@ const AppWrapper = (props) => {
 }
 
 const AppView = styled.div`
-  height: calc(100vh - 67px);
-  padding: 100px 20px 20px 20px;
+  height: 100%;
+  padding: 30px 20px 67px 20px;
   overflow-y: scroll;
 `
 
@@ -55,6 +57,7 @@ const AppNavigation = () => {
           <Routes>
             <Route path="/" element={<TravelsList />} />
             <Route path="/teams" element={<Team />} />
+            <Route path="/settings" element={<Settings />} />
 
             {/* Team */}
             <Route path="team-funnel" element={<TeamFunnel />} />

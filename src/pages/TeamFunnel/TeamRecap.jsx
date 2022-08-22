@@ -41,7 +41,6 @@ const StyledRecap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-item:center;
   padding: 1.5rem;
   height: 100%;
 `

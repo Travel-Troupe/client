@@ -45,9 +45,10 @@ const StyledValidatedDate = styled.div`
   }
 `
 
-const StyledButton = styled(Button)`
-  display: inline-block;
-  margin: 0 auto;
+export const StyledCenteredButton = styled(Button)`
+  display: block;
+  margin: 0 auto 16px;
+  width: fit-content;
 `
 
 const Team = () => {
@@ -56,7 +57,7 @@ const Team = () => {
 
   return (
     <div>
-      <AppHeader/>
+      <AppHeader title="Mes troupes" subtitle="Liste de toutes vos troupes :"/>
 
       {hasData && (
         <ul>
@@ -79,7 +80,7 @@ const Team = () => {
           })}
         </ul>
       )}
-      <StyledButton as={Link} to={'/team-funnel'} className='btn'>Trouver une troupe</StyledButton>
+      <StyledCenteredButton as={Link} to={'/team-funnel'} className='btn'>Trouver une troupe</StyledCenteredButton>
     </div>
   );
 };
