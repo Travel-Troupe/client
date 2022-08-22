@@ -92,7 +92,7 @@ const Destination = () => {
           <span className='label'>Donnez un nom à votre voyage :</span>
           <Input onChange={onNameChange}/>
           <span className='label'>Choisissez une destination :</span>
-          <MapboxAutocomplete locationTypes={['country']} onChange={onDestinationChange}/>
+          <MapboxAutocomplete onChange={onDestinationChange}/>
         </StyledFormContainer>
         <Button className='btn' type="submit">Valider</Button>
       </StyledForm>
