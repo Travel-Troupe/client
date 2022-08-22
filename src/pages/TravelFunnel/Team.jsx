@@ -1,10 +1,11 @@
 import React from 'react';
 import useFetch from "../../hooks/useFetch";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import formatDate from "../../utils/formatDate";
 import {Link} from "react-router-dom";
 import AppHeader from '../../components/AppHeader'
 import Button from '../../components/Button';
+import { StyledNoContent } from '../TravelsList';
 
 const StyledItem = styled.li`
   list-style-type: none;
@@ -51,16 +52,24 @@ export const StyledCenteredButton = styled(Button)`
   width: fit-content;
 `
 
+const StyledContainer = styled.div`
+  height: 100%;
+  ${({ hasData }) => !hasData && css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  `}
+`
+
 const Team = () => {
   const { data, error, loading } = useFetch('/team/all')
   const hasData = data && data.length
 
   return (
-    <div>
+    <StyledContainer hasData={hasData}>
       <AppHeader title="Mes troupes" subtitle="Liste de toutes vos troupes :"/>
-
-      {hasData && (
-        <ul>
+      {hasData ? (
+        <ul style={{height: '80%', overflow: 'scroll'}}>
           {data.map(({name, _id: id, validatedStartDate, validatedEndDate}) => {
             return <StyledItem key={id}>
               <span>{name}</span>
@@ -79,9 +88,12 @@ const Team = () => {
             </StyledItem>
           })}
         </ul>
-      )}
+      ) : (!loading && !hasData) ? <StyledNoContent>
+          Nous n’avons trouvé aucune troupe…<br/><br/>
+          Nous vous conseillons d’en créer une maintenant !
+      </StyledNoContent> : <></>}
       <StyledCenteredButton as={Link} to={'/team-funnel'} className='btn'>Trouver une troupe</StyledCenteredButton>
-    </div>
+    </StyledContainer>
   );
 };
 
