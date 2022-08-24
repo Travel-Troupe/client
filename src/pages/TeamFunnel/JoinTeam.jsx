@@ -19,6 +19,11 @@ const StyledTeam = styled.div`
     text-align: center;
   }
 
+  p {
+    margin: 10px 0;
+    color: var(--color-white);
+  }
+
   button {
     margin-top: 10px;
   }
@@ -53,10 +58,10 @@ const JoinTeam = () => {
 
   return (
     <StyledTeam>
-      <Text>JoinTeam</Text>
+      <Text>Rejoindre une team</Text>
       {hasData && (
         <div>
-          <p>bravo vous avez bien rejoins la team lol</p>
+          <p>bravo vous avez bien rejoins la team</p>
           <Button as={Link} to="/">Voir mes voyages</Button>
         </div>
       )}
