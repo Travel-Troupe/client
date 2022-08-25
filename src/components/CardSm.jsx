@@ -32,7 +32,9 @@ position: relative;
 const CardSm = (props) => {
   return (
     <StyledCardSm {...props}>
-      <i className={props.icon}></i>
+      <div>
+        <img src={props.icon} />
+      </div>
       <p>{props.children}</p>
     </StyledCardSm>
   )

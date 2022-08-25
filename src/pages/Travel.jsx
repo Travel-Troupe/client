@@ -9,6 +9,10 @@ import ImgProfil from '../assets/profil.jpg'
 import Badge from '../components/Badge'
 import formatDate from "../utils/formatDate";
 import getUserAvatar from '../utils/getUserAvatar'
+import ImgTask from '../assets/tasks.svg'
+import ImgDoc from '../assets/documents.svg'
+import ImgStep from '../assets/step.svg'
+import ImgBudget from '../assets/budgets.svg'
 
 const StyledContainer = styled.div`
   min-height: 100%;
@@ -112,16 +116,16 @@ const Travel = (props) => {
         )
     }
       <Flex>
-          <CardSm icon={'gg-layout-list'}>Tâches</CardSm>
-          <CardSm icon={'gg-file'}>Documents</CardSm>
+          <CardSm icon={ImgTask}>Tâches</CardSm>
+          <CardSm icon={ImgDoc}>Documents</CardSm>
           <CardSm
             as={Link}
             to={`/travel/${travelId}/steps`}
-            icon={'map icon'}
+            icon={ImgStep}
           >
             Étapes clés
           </CardSm>
-          <CardSm icon={'gg-euro'}>Budget</CardSm>
+          <CardSm icon={ImgBudget}>Budget</CardSm>
 
       </Flex>
     </StyledContainer>
